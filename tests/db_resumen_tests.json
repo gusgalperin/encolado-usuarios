@@ -1,0 +1,32 @@
+[
+  {
+    "dominio": "generarNumero",
+    "descripcion": "generar muchos numeros",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "security",
+    "descripcion": "caso feliz",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "security",
+    "descripcion": "sin apikey al pedir token",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "security",
+    "descripcion": "apikey invalida al pedir token",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "security",
+    "descripcion": "sin token al pedir recurso seguro",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "security",
+    "descripcion": "token invalido al pedir recurso seguro",
+    "resultado": "ok"
+  }
+]
