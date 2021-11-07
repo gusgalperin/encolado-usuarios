@@ -48,7 +48,6 @@ class SecurityTests extends BaseTest{
             let token = await this.obtenerAccessToken('')
             throw new Error('se pudo obtener token')
         } catch (error) {
-            //console.log(JSON.stringify(error))
         }
     }
 
@@ -59,7 +58,6 @@ class SecurityTests extends BaseTest{
             let token = await this.obtenerAccessToken(eventoCreado.apiKey.slice(0, -1))
             throw new Error('se pudo obtener token')
         } catch (error) {
-            //console.log(JSON.stringify(error))
         }
     }
 
@@ -72,7 +70,6 @@ class SecurityTests extends BaseTest{
             let evento = await this.obtenerRecursoSeguro(eventoCreado.id, '')
             throw new Error('se pudo obtener recurso seguro')
         } catch (error) {
-            //console.log(JSON.stringify(error))
         }
     }
 
@@ -85,13 +82,10 @@ class SecurityTests extends BaseTest{
             let evento = await this.obtenerRecursoSeguro(eventoCreado.id, token.access_token.slice(0, -1))
             throw new Error('se pudo obtener recurso seguro')
         } catch (error) {
-            //console.log(JSON.stringify(error))
         }
     }
 
     crearEvento = async () => {
-        //console.log('creando evento')
-
         const evento = {
             "codigo": "ARG_CHILE_09-2021",
             "descripcion": "Venta de entradas para el partido de Argentina vs Chile por la fecha 24 de las eliminatorias para la copa del mundo Qatar 2022",
@@ -106,31 +100,21 @@ class SecurityTests extends BaseTest{
 
         let apikeyId = await cliente.post(evento);
 
-        //console.log(`evento creado: ${apikeyId.id}`)
-
         return apikeyId;
     }
 
     obtenerAccessToken = async (apikey) => {
-        //console.log(`obteniendo access token - apikey: ${apikey}`)
-
         const cliente = new ClienteHTTP(`${this.baseURL}/auth/access-token`)
 
         let token = await cliente.post({apikey: apikey});
         
-        //console.log(`access token: ${token.access_token}`)
-
         return token;
     }
 
     obtenerRecursoSeguro = async (id, token) => {
-        //console.log(`obteniendo recurso seguro - id: ${id} token: ${token}`)
         const cliente = new ClienteHTTP(`${this.baseURL}/events/${id}`)
 
         let evento = await cliente.get(null, {'x-access-token': token});
-
-        //console.log('recurso seguro obtenido')
-        //console.log(evento.id)
 
         return evento;
     }
