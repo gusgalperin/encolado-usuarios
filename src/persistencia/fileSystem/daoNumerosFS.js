@@ -1,3 +1,4 @@
+import NumeroDuplicadoPorUsuario from "../../negocio/exceptions/numeroDuplicadoPorUsuario.js";
 import BaseDaoFs from "./baseDaoFS.js";
 
 class DaoNumerosFs extends BaseDaoFs {
@@ -19,6 +20,21 @@ class DaoNumerosFs extends BaseDaoFs {
         }
 
         return 0
+    }
+
+    async buscarNumero(eventoId, usuarioId){
+        const numeros = await this.obtenerTodosParaEvento(eventoId);
+
+        return numeros.find(x => x.usuarioId == usuarioId).numero
+    }
+
+    async save(doc){
+        let numeroExiste = await this.buscarNumero(doc.eventoId, doc.usuarioId)
+        
+        if(numeroExiste)
+            throw new NumeroDuplicadoPorUsuario()
+
+        await super.save(doc)
     }
 }
 
