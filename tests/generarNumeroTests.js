@@ -20,12 +20,16 @@ class GenerarNumeroTests extends BaseTest {
     }
 
     generarMuchosNumeros = async () => {
+        //arrange
         const cu = new GenerarNumero()
         const eventoId = uuidv4();
+        
+        //act
         for (let index = 0; index < 10; index++) {
             await cu.ejecutar({ eventoId: eventoId, usuarioId: uuidv4() })
         }
 
+        //assert
         const numerosGuardados = await this.dao.obtenerTodosParaEvento(eventoId)
 
         let salioBien = true;
@@ -40,14 +44,16 @@ class GenerarNumeroTests extends BaseTest {
     }
 
     generarNumeroDuplicado = async () => {
+        //arrange
         const cu = new GenerarNumero()
         const eventoId = uuidv4();
         const usuario = uuidv4();
+
+        //act
         let numeroUno = await cu.ejecutar({ eventoId: eventoId, usuarioId: usuario })
         let numeroDos = await cu.ejecutar({ eventoId: eventoId, usuarioId: usuario })
 
-        console.log(numeroUno + ' ' + numeroDos);
-
+        //assert
         if(numeroUno != numeroDos){
             throw new Error('deberia haber devuelto el mismo numero que la primera vez')
         }
