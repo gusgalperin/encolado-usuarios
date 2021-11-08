@@ -12,7 +12,8 @@ class GenerarNumeroTests extends BaseTest {
 
     async ejecutar(){
         const tests = [
-            {desc: 'generar muchos numeros', test: this.generarMuchosNumeros}
+            {desc: 'generar muchos numeros', test: this.generarMuchosNumeros},
+            {desc: 'generar duplicado', test: this.generarNumeroDuplicado}
         ]
 
         await this.run(tests)
@@ -35,6 +36,20 @@ class GenerarNumeroTests extends BaseTest {
 
         if(!salioBien){
             throw new Error('no se generaron numeros secuenciales')
+        }
+    }
+
+    generarNumeroDuplicado = async () => {
+        const cu = new GenerarNumero()
+        const eventoId = uuidv4();
+        const usuario = uuidv4();
+        let numeroUno = await cu.ejecutar({ eventoId: eventoId, usuarioId: usuario })
+        let numeroDos = await cu.ejecutar({ eventoId: eventoId, usuarioId: usuario })
+
+        console.log(numeroUno + ' ' + numeroDos);
+
+        if(numeroUno != numeroDos){
+            throw new Error('deberia haber devuelto el mismo numero que la primera vez')
         }
     }
 }

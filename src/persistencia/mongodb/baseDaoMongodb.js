@@ -10,7 +10,7 @@ class BaseDaoMongodb {
     }
     
     async save(doc){
-        const result = await this.collection.insertOne(doc);
+        await this.collection.insertOne(doc);
     }
 
     async deleteAll(){

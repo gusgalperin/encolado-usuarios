@@ -6,6 +6,10 @@ class DaoMongodb{
         this.numeros = new DaoNumerosMongodb()
         this.eventos = new DaoEventsMongodb()
     }
+
+    async crearIndices(){
+        await this.numeros.crearIndices()
+    }
 }
 
 export default DaoMongodb

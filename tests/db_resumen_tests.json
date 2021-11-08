@@ -5,6 +5,11 @@
     "resultado": "ok"
   },
   {
+    "dominio": "generarNumero",
+    "descripcion": "generar duplicado",
+    "resultado": "ok"
+  },
+  {
     "dominio": "security",
     "descripcion": "caso feliz",
     "resultado": "ok"
