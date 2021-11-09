@@ -1,4 +1,4 @@
-import { getDao } from "../../persistencia/daoFactory";
+import { getDao } from "../../persistencia/daoFactory.js";
 import Usuario from "../entidades/usuario.js";
 import GenerarNumero from "./generarNumero.js";
 
@@ -25,17 +25,18 @@ class EncolarUsuario {
     }
 
     validar = async (eventoId) => {
-        let evento = this.dao.eventos.getById(eventoId)
+        let evento = await this.dao.eventos.getById(eventoId)
 
-        if(!evento)
+        if(!evento){
             throw new Error('no se encontro el evento ' + eventoId)
+        }
 
         let now = new Date()
 
-        if(evento.fechaHoraInicioEncolado < now)
+        if(new Date(evento.fechaHoraInicioEncolado) > now)
             throw new Error('aun no inicio el horario de encolado')
 
-        if(evento.fechaHoraFinEvento < now)
+        if(new Date(evento.fechaHoraFinEvento) < now)
             throw new Error('el evento ya finalizo')
     }
 }

@@ -1,15 +1,5 @@
 [
   {
-    "dominio": "generarNumero",
-    "descripcion": "generar muchos numeros",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "generarNumero",
-    "descripcion": "generar duplicado",
-    "resultado": "ok"
-  },
-  {
     "dominio": "security",
     "descripcion": "caso feliz",
     "resultado": "ok"
@@ -32,6 +22,36 @@
   {
     "dominio": "security",
     "descripcion": "token invalido al pedir recurso seguro",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "generarNumero",
+    "descripcion": "generar muchos numeros",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "generarNumero",
+    "descripcion": "generar duplicado",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
+    "descripcion": "evento no existe",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
+    "descripcion": "evento con fecha de inicio de encolado mayor a ahora",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
+    "descripcion": "evento ya finalizo",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
+    "descripcion": "encolado ok",
     "resultado": "ok"
   }
 ]

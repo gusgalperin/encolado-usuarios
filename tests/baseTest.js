@@ -10,7 +10,7 @@ class BaseTest{
                 await test.test()
                 await this.resumen.agregar(this.dominio, test.desc, 'ok')
             } catch (error) {
-                await this.resumen.agregar(this.dominio, test.desc, `error | ${error.message}`)
+                await this.resumen.agregar(this.dominio, test.desc, `error --> ${error.message}`)
             }
             
             if(callback)
