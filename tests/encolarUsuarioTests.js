@@ -1,13 +1,11 @@
 import { v4 as uuidv4 } from 'uuid'
 import BaseTest from './baseTest.js'
 import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
-import { getDao } from '../src/persistencia/daoFactory.js'
 import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
 
 class EncolarUsuarioTests extends BaseTest{
     constructor(resumen){
         super('encolar usuario', resumen)
-        this.dao = getDao().usuarios
     }
 
     ejecutar = async () =>{
