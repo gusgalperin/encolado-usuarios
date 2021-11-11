@@ -15,6 +15,9 @@ class EncolarUsuario {
 
     ejecutar = async ({eventoId, email, nombre, telefono}) => {
         const evento = await this.dao.eventos.getById(eventoId)
+        if(!evento){
+            throw new Error('no se encontro el evento ' + eventoId)
+        }
 
         await this.validar(evento)
 
@@ -34,9 +37,6 @@ class EncolarUsuario {
     }
 
     validar = async (evento) => {
-        if(!evento){
-            throw new Error('no se encontro el evento ' + eventoId)
-        }
 
         let now = new Date()
 
@@ -55,9 +55,7 @@ class EncolarUsuario {
             tiempoEspera: tiempoEspera
         }
 
-        const mailer = crearMailer(new EncoladoProvider(datos))
-
-        await mailer.enviar(usuario.email)
+        await this.mailer.enviar(usuario.email, new EncoladoProvider(datos))
     }
 }
 

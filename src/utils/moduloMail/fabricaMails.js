@@ -2,12 +2,11 @@ import Mailer from '../moduloMail/enviarMail.js'
 import { FAKE_MAIL } from "../../config.js";
 import MailerMock from "./enviarMailMock.js";
 
-function crearMailer(subjectAndBodyProvider) {
-    if(FAKE_MAIL)
+function crearMailer(forzarReal) {
+    if(FAKE_MAIL && !forzarReal)
         return new MailerMock()
     else
-        return new Mailer(subjectAndBodyProvider)
+        return new Mailer()
 }
-
 
 export { crearMailer }

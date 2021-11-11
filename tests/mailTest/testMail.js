@@ -1,20 +1,40 @@
 import {crearMailer} from '../../src/utils/moduloMail/fabricaMails.js'
 import PruebaProvider from '../../src/utils/moduloMail/pruebaProvider.js'
+import BaseTest from "../baseTest.js";
 
-async function testMail () {
-    const datos = {
-        nombre:'Alex',
-        apellido:'nuñez',
-        mail: 'gusgalper@gmail.com'
+class MailerTests extends BaseTest{
+    constructor(resumen) {
+        super('mailer', resumen)
     }
 
-    const mailer = crearMailer(new PruebaProvider(datos))
+    ejecutar = async () =>{
+        const tests = [
+            {desc: 'enviar mail', test: this.testMail}
+        ]
 
-    try {
-        await mailer.enviar(datos.mail)
-    } catch (error) {
-        throw new Error (`Ocurrio un error: ${error}`)
+        await this.run(tests)
+    }
+
+    testMail = async () => {
+        const datos = {
+            nombre:'Alex',
+            apellido:'nuñez',
+            mail: 'gusgalper@gmail.com'
+        }
+
+        const mailer = crearMailer(true)
+
+        try {
+            await mailer.enviar(datos.mail, new PruebaProvider(datos))
+        } catch (error) {
+            throw new Error (`Ocurrio un error: ${error}`)
+        }
     }
 }
 
-export { testMail }
+async function ejecutarMailerTests(resumen){
+    const sut = new MailerTests(resumen)
+    await sut.ejecutar()
+}
+
+export { ejecutarMailerTests }
