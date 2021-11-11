@@ -8,6 +8,7 @@ class DaoUsuariosMongodb extends BaseDaoMongodb{
     getCantidadDeUsuariosPrevios = async(eventoId, usuarioId, lugarEnlaCola) => {
         const query = {
             eventoId: eventoId,
+            estado: 'encolado',
             lugarEnlaCola : { $lt:lugarEnlaCola }
         }
 
