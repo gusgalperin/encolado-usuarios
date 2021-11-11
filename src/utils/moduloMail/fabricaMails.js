@@ -1,9 +1,7 @@
-import {USER,PASS} from '../../config.js'
-import {crearEnviadorDeMails} from '../moduloMail/enviarMail.js'
+import Mailer from '../moduloMail/enviarMail.js'
 
-
-function crearMailer(){
-    return crearEnviadorDeMails(USER,PASS)
+function crearMailer(subjectAndBodyProvider) {
+    return new Mailer(subjectAndBodyProvider)
 }
 
 

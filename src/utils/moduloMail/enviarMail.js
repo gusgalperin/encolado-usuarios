@@ -1,60 +1,39 @@
+import { USER, PASS } from '../../config.js'
 import nodemailer from 'nodemailer'
 
+class Mailer {
+    constructor(subjectAndBodyProvider){
+        this.transporter = nodemailer.createTransport({
+            host: "smtp-mail.outlook.com", // hostname
+            secureConnection: false, // TLS requires secureConnection to be false
+            port: 587, // port for secure SMTP
+            tls: {
+                rejectUnauthorized: false,
+            },
+            auth: {
+                user: USER,
+                pass: PASS
+            }
+        })
 
-function crearEnviadorDeMails (miMail,pass){
-const transporter = nodemailer.createTransport({
-    
-    host: "smtp-mail.outlook.com", // hostname
-    secureConnection: false, // TLS requires secureConnection to be false
-    port: 587, // port for secure SMTP
-    tls: { 
-       rejectUnauthorized: false,
-    },
-    auth: {
-        user: miMail,
-        pass: pass
+        this.subjectAndBodyProvider = subjectAndBodyProvider
     }
-  })
 
-//   return {
-//       enviarConCuerpoHtml: async (to, subject, html) =>{
-//           const info = {
-//             from: rem,
-//             to : to,
-//             subject: subject,
-//             html: html 
-//           }
-//           try {
-//               await transporter.sendMail(info)
-//               console.log('email enviado')
-//           } catch (error) {
-            
-//             throw new Error(`error al enviar el mail , ${error}`)
-              
-//           }
-//       }
-//   }
-
-return {
-    enviarMensaje: async (to, subject, html) =>{
+    enviar = async (to) => {
         const info = {
-          from: miMail,
-          to : to,
-          subject: subject,
-          html: html 
+            from: USER,
+            to : to,
+            subject: this.subjectAndBodyProvider.subject,
+            html: this.subjectAndBodyProvider.body
         }
+
         try {
-            await transporter.sendMail(info)
+            await this.transporter.sendMail(info)
             console.log('email enviado')
         } catch (error) {
-          
-          throw new Error(`error al enviar el mail , ${error}`)
-            
+            throw new Error(`error al enviar el mail , ${error}`)
         }
     }
 }
-  
-}
 
-
-export {crearEnviadorDeMails}
+export default Mailer

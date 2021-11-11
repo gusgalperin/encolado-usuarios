@@ -5,6 +5,7 @@ import Cliente from '../src/persistencia/mongodb/Cliente.js'
 import Resumen from './resumenTests.js'
 import { getDao } from '../src/persistencia/daoFactory.js';
 import { ejecutarEncolarUsuarioTests } from './encolarUsuarioTests.js';
+import { testMail } from './mailTest/testMail.js';
 
 const resumen = new Resumen()
 await resumen.reset()
@@ -19,9 +20,11 @@ if (USE_MONGO){
     await dao.crearIndices()
 }
 
-await ejecutarSecurityTests(resumen)
-await ejecutarGenerarNumerosTests(resumen)
-await ejecutarEncolarUsuarioTests(resumen)
+await testMail()
+
+// await ejecutarSecurityTests(resumen)
+// await ejecutarGenerarNumerosTests(resumen)
+// await ejecutarEncolarUsuarioTests(resumen)
 
 if (USE_MONGO){
     await clienteMongo.desconectar()
