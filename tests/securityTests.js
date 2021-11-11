@@ -93,7 +93,7 @@ class SecurityTests extends BaseTest{
             "fechaHoraFinEvento": "2021-10-29 06:00:00",
             "fechaHoraInicioEncolado": "2021-10-28 22:00:00",
             "tiempoEstimadoAtencionPorUsuarioEnMinutos": 5,
-            "usuariosRecurrentes": 1
+            "usuariosConcurrentes": 1
         }
 
         const cliente = new ClienteHTTP(`${this.baseURL}/events`)

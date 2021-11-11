@@ -2,11 +2,11 @@ import { v4 as uuidv4 } from 'uuid'
 import { generateApiKey } from '../../security/apiKeyGenerator.js'
 
 class Evento{
-    constructor(codigo, descripcion, fechaHoraInicioEvento, fechaHoraFinEvento, fechaHoraInicioEncolado, tiempoEstimadoAtencionPorUsuarioEnMinutos, usuariosRecurrentes) {
+    constructor(codigo, descripcion, fechaHoraInicioEvento, fechaHoraFinEvento, fechaHoraInicioEncolado, tiempoEstimadoAtencionPorUsuarioEnMinutos, usuariosConcurrentes) {
         this.codigo = codigo
         this.descripcion = descripcion
         this.tiempoEstimadoAtencionPorUsuarioEnMinutos = tiempoEstimadoAtencionPorUsuarioEnMinutos
-        this.usuariosRecurrentes = usuariosRecurrentes
+        this.usuariosConcurrentes = usuariosConcurrentes
 
         this.setFechas(
             this.validarFecha(fechaHoraInicioEvento),

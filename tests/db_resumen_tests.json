@@ -53,5 +53,10 @@
     "dominio": "encolar usuario",
     "descripcion": "encolado ok",
     "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
+    "descripcion": "encolar varios usuario",
+    "resultado": "ok"
   }
 ]

@@ -13,7 +13,8 @@ class EncolarUsuarioTests extends BaseTest{
             {desc: 'evento no existe', test: this.eventoInexistente},
             {desc: 'evento con fecha de inicio de encolado mayor a ahora', test: this.eventoExisteFechaInicioMenorAAhora},
             {desc: 'evento ya finalizo', test: this.eventoYaFinalizado},
-            {desc: 'encolado ok', test: this.encoladoOk}
+            {desc: 'encolado ok', test: this.encoladoOk},
+            {desc: 'encolar varios usuario', test: this.encolarVariosUsuarios}
         ]
 
         await this.run(tests)
@@ -48,7 +49,7 @@ class EncolarUsuarioTests extends BaseTest{
             descripcion: 'sarasa',
             fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+3}`),
             fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
-            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`)
         }
         const eventoId = await crearEvento.ejecutar(evento)
 
@@ -119,6 +120,39 @@ class EncolarUsuarioTests extends BaseTest{
             if(!usuarioEncolado.usuarioId){
                 throw new Error('no devolvio id')
             }
+        }
+        catch (error){
+            throw new Error('no deberia haber tirado error: ' + error.message)
+        }
+    }
+
+    encolarVariosUsuarios = async () => {
+        //arrange
+        const sut = new EncolarUsuario()
+        const crearEvento = new CrearEvento()
+        const now = new Date()
+        const evento = {
+            codigo: 'sarasa',
+            descripcion: 'sarasa',
+            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+            tiempoEstimadoAtencionPorUsuarioEnMinutos: 10,
+            usuariosConcurrentes: 1
+        }
+        const eventoId = await crearEvento.ejecutar(evento)
+
+        //act //assert
+
+        try{
+            for (let i = 0; i < 5; i++) {
+                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'sarasa', nombre:'sarasa', telefono:'sarasa' })
+
+                if(usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos != i*10){
+                    throw new Error(`tiempo de espera incorrecto. devolvio ${usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos} deberia ser ${i*10}`)
+                }
+            }
+
         }
         catch (error){
             throw new Error('no deberia haber tirado error: ' + error.message)

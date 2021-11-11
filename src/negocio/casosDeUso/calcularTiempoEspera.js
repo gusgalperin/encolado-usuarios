@@ -7,7 +7,9 @@ class CalcularTiempoEspera {
 
     ejecutar = async (usuario) => {
         const evento = await this.dao.eventos.getById(usuario.eventoId)
-        const genteAntesQueVos = await this.dao.usuarios.getCantidadDeUsuariosPrevios(usuario.eventoId, usuario.id)
+        const cantidadGenteAntesQueVos = await this.dao.usuarios.getCantidadDeUsuariosPrevios(usuario.eventoId, usuario.id, usuario.lugarEnlaCola)
+
+        return (parseInt(cantidadGenteAntesQueVos) / parseInt(evento.usuariosConcurrentes)) * parseInt(evento.tiempoEstimadoAtencionPorUsuarioEnMinutos)
     }
 }
 

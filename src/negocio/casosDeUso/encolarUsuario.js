@@ -1,10 +1,12 @@
 import { getDao } from "../../persistencia/daoFactory.js";
 import Usuario from "../entidades/usuario.js";
 import GenerarNumero from "./generarNumero.js";
+import CalcularTiempoEspera from "./calcularTiempoEspera.js";
 
 class EncolarUsuario {
     constructor(){
         this.generarNumero = new GenerarNumero()
+        this.calcularTiempoDeEspera = new CalcularTiempoEspera()
         this.dao = getDao()
     }
 
@@ -19,9 +21,11 @@ class EncolarUsuario {
 
         await this.dao.usuarios.save(usuario)
 
+        const tiempoEstimadoDeEspera = await this.calcularTiempoDeEspera.ejecutar(usuario)
+
         //TODO: enviar mail
 
-        return {usuarioId: usuario.id}
+        return {usuarioId: usuario.id, tiempoEstimadoDeEsperaEnMinutos: tiempoEstimadoDeEspera}
     }
 
     validar = async (eventoId) => {
