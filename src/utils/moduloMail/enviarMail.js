@@ -2,7 +2,7 @@ import { USER, PASS } from '../../config.js'
 import nodemailer from 'nodemailer'
 
 class Mailer {
-    constructor(subjectAndBodyProvider){
+    constructor(){
         this.transporter = nodemailer.createTransport({
             host: "smtp-mail.outlook.com", // hostname
             secureConnection: false, // TLS requires secureConnection to be false
@@ -15,16 +15,14 @@ class Mailer {
                 pass: PASS
             }
         })
-
-        this.subjectAndBodyProvider = subjectAndBodyProvider
     }
 
-    enviar = async (to) => {
+    enviar = async (to, subjectAndBodyProvider) => {
         const info = {
             from: USER,
             to : to,
-            subject: this.subjectAndBodyProvider.subject,
-            html: this.subjectAndBodyProvider.body
+            subject: subjectAndBodyProvider.subject,
+            html: subjectAndBodyProvider.body
         }
 
         try {

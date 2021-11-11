@@ -4,6 +4,7 @@ const DB_PATH = './db'
 const MONGO_URI = 'mongodb://mongodb:mongodb@localhost:27017'
 const MONGO_DB_NAME = 'encoladoUsuarios'
 const USE_MONGO = true
+const FAKE_MAIL = true
 
 //-------------------------------------------------------------
 
@@ -19,5 +20,6 @@ export {
     MONGO_DB_NAME,
     USE_MONGO,
     PASS,
-    USER
+    USER,
+    FAKE_MAIL
 }

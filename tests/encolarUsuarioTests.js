@@ -116,7 +116,7 @@ class EncolarUsuarioTests extends BaseTest{
         //act //assert
 
         try{
-            const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'sarasa', nombre:'sarasa', telefono:'sarasa' })
+            const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'gusgalper@gmail.com', nombre:'sarasa', telefono:'sarasa' })
             if(!usuarioEncolado.usuarioId){
                 throw new Error('no devolvio id')
             }
@@ -146,7 +146,7 @@ class EncolarUsuarioTests extends BaseTest{
 
         try{
             for (let i = 0; i < 5; i++) {
-                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'sarasa', nombre:'sarasa', telefono:'sarasa' })
+                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'gusgalper@gmail.com', nombre:'sarasa', telefono:'sarasa' })
 
                 if(usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos != i*10){
                     throw new Error(`tiempo de espera incorrecto. devolvio ${usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos} deberia ser ${i*10}`)

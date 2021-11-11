@@ -2,16 +2,21 @@ import { getDao } from "../../persistencia/daoFactory.js";
 import Usuario from "../entidades/usuario.js";
 import GenerarNumero from "./generarNumero.js";
 import CalcularTiempoEspera from "./calcularTiempoEspera.js";
+import { crearMailer } from '../../utils/moduloMail/fabricaMails.js'
+import EncoladoProvider from "../../utils/moduloMail/encoladoProvider.js";
 
 class EncolarUsuario {
     constructor(){
         this.generarNumero = new GenerarNumero()
         this.calcularTiempoDeEspera = new CalcularTiempoEspera()
         this.dao = getDao()
+        this.mailer = crearMailer()
     }
 
     ejecutar = async ({eventoId, email, nombre, telefono}) => {
-        await this.validar(eventoId)
+        const evento = await this.dao.eventos.getById(eventoId)
+
+        await this.validar(evento)
 
         let usuario = new Usuario(eventoId, email, nombre, telefono)
 
@@ -23,14 +28,12 @@ class EncolarUsuario {
 
         const tiempoEstimadoDeEspera = await this.calcularTiempoDeEspera.ejecutar(usuario)
 
-        //TODO: enviar mail
+        await this.enviarMail(evento, usuario, tiempoEstimadoDeEspera)
 
-        return {usuarioId: usuario.id, tiempoEstimadoDeEsperaEnMinutos: tiempoEstimadoDeEspera}
+        return { usuarioId: usuario.id, tiempoEstimadoDeEsperaEnMinutos: tiempoEstimadoDeEspera }
     }
 
-    validar = async (eventoId) => {
-        let evento = await this.dao.eventos.getById(eventoId)
-
+    validar = async (evento) => {
         if(!evento){
             throw new Error('no se encontro el evento ' + eventoId)
         }
@@ -42,6 +45,19 @@ class EncolarUsuario {
 
         if(new Date(evento.fechaHoraFinEvento) < now)
             throw new Error('el evento ya finalizo')
+    }
+
+    enviarMail = async (evento, usuario, tiempoEspera) => {
+        const datos = {
+            nombre: usuario.nombre,
+            codigoEvento: evento.codigoEvento,
+            lugarEnlaCola: usuario.lugarEnlaCola,
+            tiempoEspera: tiempoEspera
+        }
+
+        const mailer = crearMailer(new EncoladoProvider(datos))
+
+        await mailer.enviar(usuario.email)
     }
 }
 

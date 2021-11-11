@@ -24,7 +24,7 @@ await testMail()
 
 // await ejecutarSecurityTests(resumen)
 // await ejecutarGenerarNumerosTests(resumen)
-// await ejecutarEncolarUsuarioTests(resumen)
+await ejecutarEncolarUsuarioTests(resumen)
 
 if (USE_MONGO){
     await clienteMongo.desconectar()
