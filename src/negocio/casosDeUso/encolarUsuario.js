@@ -14,26 +14,25 @@ class EncolarUsuario {
     }
 
     ejecutar = async ({eventoId, email, nombre, telefono}) => {
-        const evento = await this.dao.eventos.getById(eventoId)
-        if(!evento){
-            throw new Error('no se encontro el evento ' + eventoId)
-        }
+        const evento = await this.buscarEvento(eventoId)
 
         await this.validar(evento)
 
-        let usuario = new Usuario(eventoId, email, nombre, telefono)
-
-        const lugarEnLaCola = await this.generarNumero.ejecutar({eventoId: eventoId, usuarioId: usuario.id})
-
-        usuario.setLugarEnLaCola(lugarEnLaCola)
-
-        await this.dao.usuarios.save(usuario)
+        const usuario = await this.crearUsuario(eventoId, email, nombre, telefono)
 
         const tiempoEstimadoDeEspera = await this.calcularTiempoDeEspera.ejecutar(usuario)
 
         await this.enviarMail(evento, usuario, tiempoEstimadoDeEspera)
 
         return { usuarioId: usuario.id, tiempoEstimadoDeEsperaEnMinutos: tiempoEstimadoDeEspera }
+    }
+
+    buscarEvento = async (eventoId) => {
+        const evento = await this.dao.eventos.getById(eventoId)
+        if(!evento){
+            throw new Error('no se encontro el evento ' + eventoId)
+        }
+        return evento
     }
 
     validar = async (evento) => {
@@ -45,6 +44,18 @@ class EncolarUsuario {
 
         if(new Date(evento.fechaHoraFinEvento) < now)
             throw new Error('el evento ya finalizo')
+    }
+
+    crearUsuario = async (eventoId, email, nombre, telefono) => {
+        let usuario = new Usuario(eventoId, email, nombre, telefono)
+
+        const lugarEnLaCola = await this.generarNumero.ejecutar({eventoId: eventoId, usuarioId: usuario.id})
+
+        usuario.setLugarEnLaCola(lugarEnLaCola)
+
+        await this.dao.usuarios.save(usuario)
+
+        return usuario
     }
 
     enviarMail = async (evento, usuario, tiempoEspera) => {
