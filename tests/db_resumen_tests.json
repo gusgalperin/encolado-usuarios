@@ -36,6 +36,11 @@
   },
   {
     "dominio": "encolar usuario",
+    "descripcion": "mail invalido",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
     "descripcion": "evento con fecha de inicio de encolado mayor a ahora",
     "resultado": "ok"
   },

@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import BaseTest from './baseTest.js'
 import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
 import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
+import InvalidArgsError from "../src/negocio/exceptions/invalidArgsError.js";
 
 class EncolarUsuarioTests extends BaseTest{
     constructor(resumen){
@@ -11,6 +12,7 @@ class EncolarUsuarioTests extends BaseTest{
     ejecutar = async () =>{
         const tests = [
             {desc: 'evento no existe', test: this.eventoInexistente},
+            {desc: 'mail invalido', test: this.mailInvalido},
             {desc: 'evento con fecha de inicio de encolado mayor a ahora', test: this.eventoExisteFechaInicioMenorAAhora},
             {desc: 'evento ya finalizo', test: this.eventoYaFinalizado},
             {desc: 'encolado ok', test: this.encoladoOk},
@@ -39,6 +41,35 @@ class EncolarUsuarioTests extends BaseTest{
 
         throw new Error('deberia haber tirado error')
     }
+
+
+
+    mailInvalido = async () => {
+        const sut = new EncolarUsuario()
+        const crearEvento = new CrearEvento()
+        const now = new Date()
+        const evento = {
+            codigo: 'sarasa',
+            descripcion: 'sarasa',
+            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+        }
+        const eventoId = await crearEvento.ejecutar(evento)
+
+        //act //assert
+
+        try{
+            const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'mail-invalido', nombre:'sarasa', telefono:'sarasa' })
+
+            throw new Error('deberia haber tirado error')
+        }
+        catch (error){
+            if(!error instanceof InvalidArgsError)
+                throw new Error('deberia haber devuelto un InvalidArgsError')
+        }
+    }
+
 
     eventoExisteFechaInicioMenorAAhora = async () => {
         //arrange
@@ -147,7 +178,7 @@ class EncolarUsuarioTests extends BaseTest{
 
         try{
             for (let i = 0; i < 5; i++) {
-                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:uuidv4(), nombre:'sarasa', telefono:'sarasa' })
+                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:`mail_${i}@gmail.com`, nombre:'sarasa', telefono:'sarasa' })
 
                 if(usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos != i*10){
                     throw new Error(`tiempo de espera incorrecto. devolvio ${usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos} deberia ser ${i*10}`)
@@ -182,7 +213,7 @@ class EncolarUsuarioTests extends BaseTest{
             let results = []
 
             for (let i = 0; i < 5; i++) {
-                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'siempreElMismoUsuario', nombre:'sarasa', telefono:'sarasa' })
+                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'siempreElMismoUsuario@mail.com', nombre:'sarasa', telefono:'sarasa' })
 
                 results.push(usuarioEncolado)
             }
@@ -196,6 +227,8 @@ class EncolarUsuarioTests extends BaseTest{
             throw new Error('no deberia haber tirado error: ' + error.message)
         }
     }
+
+
 }
 
 async function ejecutarEncolarUsuarioTests(resumen){

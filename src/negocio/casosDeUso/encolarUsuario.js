@@ -4,7 +4,7 @@ import CalcularTiempoEspera from "./calcularTiempoEspera.js";
 import { crearMailer } from '../../utils/moduloMail/fabricaMails.js'
 import EncoladoProvider from "../../utils/moduloMail/encoladoProvider.js";
 import NotFoundError from "../exceptions/notFoundError.js"
-import InvalidArgsErrorError from "../exceptions/invalidArgsError.js";
+import InvalidArgsError from "../exceptions/invalidArgsError.js";
 import NumeroDuplicadoPorUsuario from "../exceptions/numeroDuplicadoPorUsuario.js";
 import NumeroDuplicadoPorNumero from "../exceptions/numeroDuplicadoPorNumero.js";
 
@@ -42,10 +42,10 @@ class EncolarUsuario {
         let now = new Date()
 
         if(new Date(evento.fechaHoraInicioEncolado) > now)
-            throw new InvalidArgsErrorError('aun no inicio el horario de encolado')
+            throw new InvalidArgsError('aun no inicio el horario de encolado')
 
         if(new Date(evento.fechaHoraFinEvento) < now)
-            throw new InvalidArgsErrorError('el evento ya finalizo')
+            throw new InvalidArgsError('el evento ya finalizo')
     }
 
     crearUsuario = async (eventoId, email, nombre, telefono) => {
