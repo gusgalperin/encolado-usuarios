@@ -2,7 +2,7 @@
   {
     "dominio": "mailer",
     "descripcion": "enviar mail",
-    "resultado": "error --> Ocurrio un error: Error: error al enviar el mail , Error: Message failed: 554 5.2.0 STOREDRV.Submission.Exception:OutboundSpamException; Failed to process message due to a permanent exception with message WASCL UserAction verdict is not None. Actual verdict is RefuseQuota, ShowTierUpgrade. OutboundSpamException: WASCL UserAction verdict is not None. Actual verdict is RefuseQuota, ShowTierUpgrade. [Hostname=CP4P284MB1617.BRAP284.PROD.OUTLOOK.COM]"
+    "resultado": "ok"
   },
   {
     "dominio": "security",
@@ -30,16 +30,6 @@
     "resultado": "ok"
   },
   {
-    "dominio": "generarNumero",
-    "descripcion": "generar muchos numeros",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "generarNumero",
-    "descripcion": "generar duplicado",
-    "resultado": "ok"
-  },
-  {
     "dominio": "encolar usuario",
     "descripcion": "evento no existe",
     "resultado": "ok"
@@ -62,6 +52,11 @@
   {
     "dominio": "encolar usuario",
     "descripcion": "encolar varios usuario",
+    "resultado": "ok"
+  },
+  {
+    "dominio": "encolar usuario",
+    "descripcion": "encolar mismo usuario",
     "resultado": "ok"
   }
 ]

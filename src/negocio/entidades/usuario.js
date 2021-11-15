@@ -14,7 +14,7 @@ class Usuario {
     }
 
     setLugarEnLaCola(numero){
-        this.lugarEnlaCola = numero
+        this.lugarEnLaCola = numero
     }
 }
 

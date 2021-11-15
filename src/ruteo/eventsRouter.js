@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { verifyToken } from '../middleware/authJwt.js'
 import EventsApi from '../negocio/eventsApi.js'
 import CrearEvento from '../negocio/casosDeUso/crearEvento.js';
+import EncolarUsuario from "../negocio/casosDeUso/encolarUsuario.js";
 
 const router = Router();
 const api = new EventsApi();
@@ -25,6 +26,24 @@ router.post('/', async  (req, res) => {
     const result = await cu.ejecutar(req.body)
     res.status(201);
     res.send(result);
+})
+
+router.post('/:id/encolar', verifyToken, async  (req, res, next) => {
+    const cu = new EncolarUsuario()
+
+    try{
+        let data = req.body
+        data.eventoId = req.params.id
+
+        const result = await cu.ejecutar(data)
+
+        res.status(201);
+        res.send(result);
+    }
+    catch (err){
+        next(err)
+    }
+
 })
 
 export { router }

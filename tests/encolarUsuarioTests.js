@@ -14,7 +14,8 @@ class EncolarUsuarioTests extends BaseTest{
             {desc: 'evento con fecha de inicio de encolado mayor a ahora', test: this.eventoExisteFechaInicioMenorAAhora},
             {desc: 'evento ya finalizo', test: this.eventoYaFinalizado},
             {desc: 'encolado ok', test: this.encoladoOk},
-            {desc: 'encolar varios usuario', test: this.encolarVariosUsuarios}
+            {desc: 'encolar varios usuario', test: this.encolarVariosUsuarios},
+            {desc: 'encolar mismo usuario', test: this.encolarMismoUsuario}
         ]
 
         await this.run(tests)
@@ -146,11 +147,48 @@ class EncolarUsuarioTests extends BaseTest{
 
         try{
             for (let i = 0; i < 5; i++) {
-                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'gusgalper@gmail.com', nombre:'sarasa', telefono:'sarasa' })
+                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:uuidv4(), nombre:'sarasa', telefono:'sarasa' })
 
                 if(usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos != i*10){
                     throw new Error(`tiempo de espera incorrecto. devolvio ${usuarioEncolado.tiempoEstimadoDeEsperaEnMinutos} deberia ser ${i*10}`)
                 }
+            }
+
+        }
+        catch (error){
+            throw new Error('no deberia haber tirado error: ' + error.message)
+        }
+    }
+
+    encolarMismoUsuario = async () => {
+        //arrange
+        const sut = new EncolarUsuario()
+        const crearEvento = new CrearEvento()
+        const now = new Date()
+        const evento = {
+            codigo: 'sarasa',
+            descripcion: 'sarasa',
+            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+            tiempoEstimadoAtencionPorUsuarioEnMinutos: 10,
+            usuariosConcurrentes: 1
+        }
+        const eventoId = await crearEvento.ejecutar(evento)
+
+        //act //assert
+
+        try{
+            let results = []
+
+            for (let i = 0; i < 5; i++) {
+                const usuarioEncolado = await sut.ejecutar({ eventoId: eventoId.id, email:'siempreElMismoUsuario', nombre:'sarasa', telefono:'sarasa' })
+
+                results.push(usuarioEncolado)
+            }
+
+            if(!results.every(r => r.usuarioId == results[0].usuarioId)){
+                throw new Error('debería haber devuelto siempre el mismo id')
             }
 
         }
