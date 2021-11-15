@@ -22,7 +22,8 @@ class MailerTests extends BaseTest{
             mail: 'gusgalper@gmail.com'
         }
 
-        const mailer = crearMailer(true)
+        //const mailer = crearMailer(true)
+        const mailer = crearMailer()
 
         try {
             await mailer.enviar(datos.mail, new PruebaProvider(datos))

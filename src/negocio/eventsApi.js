@@ -7,7 +7,8 @@ class EventsApi{
 
     async buscarPorId(id){
         let evento = await dao.getById(id);
-        delete evento.apiKey
+        if(evento)
+            delete evento.apiKey
         return evento
     }
 
