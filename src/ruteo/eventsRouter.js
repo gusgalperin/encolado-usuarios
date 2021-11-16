@@ -6,6 +6,7 @@ import EncolarUsuario from "../negocio/casosDeUso/encolarUsuario.js";
 import multer from 'multer'
 import CargaMasiva from "../negocio/casosDeUso/cargaMasiva.js";
 import DesencolarUsuario from "../negocio/casosDeUso/desencolarUsuario.js";
+import GenerarReporte from "../negocio/casosDeUso/generarReporte.js";
 
 const router = Router();
 const api = new EventsApi();
@@ -71,6 +72,23 @@ router.post('/:id/desencolar', verifyToken, async  (req, res, next) => {
         next(err)
     }
 
+})
+
+router.get('/:id/reporte', async (req, res, next) => {
+    const cu = new GenerarReporte()
+
+    try{
+        const result = await cu.ejecutar({eventoId: req.params.id})
+
+        //convertir a excel
+        //devolver archivo
+        
+        res.status(201);
+        res.send(result);
+    }
+    catch (err){
+        next(err)
+    }
 })
 
 

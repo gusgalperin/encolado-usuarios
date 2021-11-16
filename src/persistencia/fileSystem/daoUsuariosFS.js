@@ -24,6 +24,19 @@ class DaoUsuariosFS extends BaseDaoFs{
        return listaUsuarios[0]
     }
 
+    buscarTodos = async (eventoId) => {
+        const usuarios = await this.getAll()
+
+        if (usuarios.length == 0) {
+            return null
+        }
+
+        let listaUsuarios = usuarios
+            .filter(u => u.eventoId == eventoId)
+
+        return listaUsuarios
+    }
+
     update = async (usuario) => {
         const usuarios = await this.getAll()
 
