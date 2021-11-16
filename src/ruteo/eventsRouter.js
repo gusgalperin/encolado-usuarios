@@ -4,8 +4,8 @@ import EventsApi from '../negocio/eventsApi.js'
 import CrearEvento from '../negocio/casosDeUso/crearEvento.js';
 import EncolarUsuario from "../negocio/casosDeUso/encolarUsuario.js";
 import multer from 'multer'
-import convertidor from "../utils/excelToJson.js";
 import CargaMasiva from "../negocio/casosDeUso/cargaMasiva.js";
+import DesencolarUsuario from "../negocio/casosDeUso/desencolarUsuario.js";
 
 const router = Router();
 const api = new EventsApi();
@@ -57,5 +57,21 @@ router.post('/:id/encolar', verifyToken, async  (req, res, next) => {
     }
 
 })
+
+router.post('/:id/desencolar', verifyToken, async  (req, res, next) => {
+    const cu = new DesencolarUsuario()
+
+    try{
+        const result = await cu.ejecutar({eventoId: req.params.id})
+
+        res.status(201);
+        res.send(result);
+    }
+    catch (err){
+        next(err)
+    }
+
+})
+
 
 export { router }

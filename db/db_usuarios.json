@@ -1,0 +1,33 @@
+[
+  {
+    "eventoId": "dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
+    "email": "gusgalper@gmail.com1",
+    "nombre": "gus1",
+    "telefono": "0303456",
+    "id": "bb4b90b1-3d8a-43f1-90fb-d24baf3b9ae0",
+    "encoladoEn": "2021-11-16T18:03:59.310Z",
+    "estado": "desencolado",
+    "desencoladoEn": "2021-11-16T18:04:14.692Z"
+  },
+  {
+    "eventoId": "dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
+    "email": "gusgalper@gmail.com2",
+    "nombre": "gus2",
+    "telefono": "0303456",
+    "id": "8f18a48a-9c3d-43a3-89aa-894beecd1894",
+    "encoladoEn": "2021-11-16T18:04:05.834Z",
+    "estado": "desencolado",
+    "desencoladoEn": "2021-11-16T18:05:13.784Z"
+  },
+  {
+    "eventoId": "dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
+    "email": "gusgalper@gmail.com3",
+    "nombre": "gus3",
+    "telefono": "0303456",
+    "id": "fb842f29-83ad-491c-8ae6-80b336f31662",
+    "encoladoEn": "2021-11-16T18:04:11.386Z",
+    "estado": "desencolado",
+    "desencoladoEn": "2021-11-16T18:06:34.026Z",
+    "lugarEnLaCola": 3
+  }
+]

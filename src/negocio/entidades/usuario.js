@@ -3,6 +3,7 @@ import EmailValidator from 'email-validator'
 import InvalidArgsError from "../exceptions/invalidArgsError.js";
 
 class Usuario {
+
     constructor(eventoId, email, nombre, telefono){
         this.eventoId = eventoId
 
@@ -39,6 +40,21 @@ class Usuario {
 
     setLugarEnLaCola(numero){
         this.lugarEnLaCola = numero
+    }
+
+    desencolar(){
+        this.estado = 'desencolado'
+        this.desencoladoEn = new Date()
+    }
+
+    static set(usuario){
+        let user = new Usuario(usuario.eventoId, usuario.email, usuario.nombre, usuario.telefono)
+        user.id = usuario.id
+        user.estado = usuario.estado
+        user.encoladoEn = usuario.encoladoEn
+        user.desencoladoEn = usuario.desencoladoEn
+        user.lugarEnLaCola = usuario.lugarEnLaCola
+        return user
     }
 }
 
