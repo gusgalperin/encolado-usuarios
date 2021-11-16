@@ -4,10 +4,14 @@ import InvalidArgsError from '../exceptions/invalidArgsError.js'
 
 class Evento{
     constructor(codigo, descripcion, fechaHoraInicioEvento, fechaHoraFinEvento, fechaHoraInicioEncolado, tiempoEstimadoAtencionPorUsuarioEnMinutos, usuariosConcurrentes) {
-        this.codigo = codigo
-        this.descripcion = descripcion
-        this.tiempoEstimadoAtencionPorUsuarioEnMinutos = tiempoEstimadoAtencionPorUsuarioEnMinutos
-        this.usuariosConcurrentes = usuariosConcurrentes
+        this.DEFAULT_TIEMPO_ATENCION = 10
+        this.DEFAULT_USUARIOS_CONCURRENTES = 1
+
+        this.setCodigo(codigo)
+        this.setDescripcion(descripcion)
+
+        this.setTiempoEstimadoAtencionPorUsuarioEnMinutos(tiempoEstimadoAtencionPorUsuarioEnMinutos)
+        this.setusuariosConcurrentes(usuariosConcurrentes)
 
         this.setFechas(
             this.validarFecha(fechaHoraInicioEvento),
@@ -17,6 +21,36 @@ class Evento{
 
         this.id = uuidv4();
         this.apiKey = generateApiKey(`${this.id}|${this.codigo}`)
+    }
+
+    setCodigo = (codigo) => {
+        if(!codigo)
+            throw new InvalidArgsError('codigo invalido')
+
+        this.codigo = codigo
+    }
+
+    setDescripcion = (descripcion) => {
+        if(!descripcion)
+            throw new InvalidArgsError('descripcion invalida')
+
+        this.descripcion = descripcion
+    }
+
+    setTiempoEstimadoAtencionPorUsuarioEnMinutos = (tiempoEstimadoAtencionPorUsuarioEnMinutos) => {
+        if(!tiempoEstimadoAtencionPorUsuarioEnMinutos){
+            tiempoEstimadoAtencionPorUsuarioEnMinutos = this.DEFAULT_TIEMPO_ATENCION
+        }
+
+        this.tiempoEstimadoAtencionPorUsuarioEnMinutos = tiempoEstimadoAtencionPorUsuarioEnMinutos
+    }
+
+    setusuariosConcurrentes = (usuariosConcurrentes) => {
+        if(!usuariosConcurrentes){
+            usuariosConcurrentes = this.DEFAULT_USUARIOS_CONCURRENTES
+        }
+
+        this.usuariosConcurrentes = usuariosConcurrentes
     }
 
     validarFecha = (fecha) => {

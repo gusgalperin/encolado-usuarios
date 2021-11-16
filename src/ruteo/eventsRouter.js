@@ -3,9 +3,13 @@ import { verifyToken } from '../middleware/authJwt.js'
 import EventsApi from '../negocio/eventsApi.js'
 import CrearEvento from '../negocio/casosDeUso/crearEvento.js';
 import EncolarUsuario from "../negocio/casosDeUso/encolarUsuario.js";
+import multer from 'multer'
+import convertidor from "../utils/excelToJson.js";
+import CargaMasiva from "../negocio/casosDeUso/cargaMasiva.js";
 
 const router = Router();
 const api = new EventsApi();
+const upload = multer({ dest: 'uploads/' })
 
 router.get('/', verifyToken, async (req, res) => {
     res.send(await api.buscarTodo())
@@ -26,6 +30,14 @@ router.post('/', async  (req, res) => {
     const result = await cu.ejecutar(req.body)
     res.status(201);
     res.send(result);
+})
+
+router.post('/bulk', upload.single('events'), async  (req, res) => {
+    const cu = new CargaMasiva()
+    const result = await cu.ejecutar({fileName: req.file.path})
+
+    res.status(201);
+    res.send(result)
 })
 
 router.post('/:id/encolar', verifyToken, async  (req, res, next) => {
