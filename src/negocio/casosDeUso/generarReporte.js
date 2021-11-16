@@ -16,7 +16,7 @@ class GenerarReporte {
 
         const reporteData = this.armarReporte(usuarios)
 
-        return reporteData
+        return { evento: evento, reporte: reporteData }
     }
 
     buscarEvento = async (eventoId) => {
@@ -40,15 +40,25 @@ class GenerarReporte {
             const usuario = usuarios[i]
 
             reporte.push({
-                eventoId: usuario.eventoId,
+                id: usuario.id,
                 email: usuario.email,
-                encoladoEn: usuario.encoladoEn,
-                desencoladoEn: usuario.desencoladoEn,
-                tiempoEsperaEnSegundos: (new Date(usuario.desencoladoEn)-new Date(usuario.encoladoEn))/1000
+                nombre: usuario.nombre,
+                telefono: usuario.telefono,
+                encoladoEn: this.formatearFecha(usuario.encoladoEn),
+                desencoladoEn: this.formatearFecha(usuario.desencoladoEn),
+                tiempoEsperaEnSegundos: (new Date(usuario.desencoladoEn)-new Date(usuario.encoladoEn))/1000,
+                lugarEnLaCola: usuario.lugarEnLaCola
             })
         }
 
         return reporte
+    }
+
+    formatearFecha = (fecha) => {
+        const date = new Date(fecha)
+
+        //return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`
+        return date.toISOString().replace(/T/, ' ').replace(/\..+/, '')
     }
 }
 

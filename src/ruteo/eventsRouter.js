@@ -7,6 +7,7 @@ import multer from 'multer'
 import CargaMasiva from "../negocio/casosDeUso/cargaMasiva.js";
 import DesencolarUsuario from "../negocio/casosDeUso/desencolarUsuario.js";
 import GenerarReporte from "../negocio/casosDeUso/generarReporte.js";
+import JsonToExcel from "../utils/jsonToExcel.js";
 
 const router = Router();
 const api = new EventsApi();
@@ -76,15 +77,15 @@ router.post('/:id/desencolar', verifyToken, async  (req, res, next) => {
 
 router.get('/:id/reporte', async (req, res, next) => {
     const cu = new GenerarReporte()
+    const jsonToExcel = new JsonToExcel()
 
     try{
-        const result = await cu.ejecutar({eventoId: req.params.id})
+        const eventoId = req.params.id
+        const result = await cu.ejecutar({ eventoId: eventoId })
 
-        //convertir a excel
-        //devolver archivo
-        
-        res.status(201);
-        res.send(result);
+        const filePath = jsonToExcel.convertir(result.reporte, result.evento.codigo)
+
+        res.download(filePath);
     }
     catch (err){
         next(err)

@@ -7,7 +7,8 @@
     "id": "bb4b90b1-3d8a-43f1-90fb-d24baf3b9ae0",
     "encoladoEn": "2021-11-16T18:03:59.310Z",
     "estado": "desencolado",
-    "desencoladoEn": "2021-11-16T18:04:14.692Z"
+    "desencoladoEn": "2021-11-16T18:04:14.692Z",
+    "lugarEnLaCola": 1
   },
   {
     "eventoId": "dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
@@ -17,7 +18,8 @@
     "id": "8f18a48a-9c3d-43a3-89aa-894beecd1894",
     "encoladoEn": "2021-11-16T18:04:05.834Z",
     "estado": "desencolado",
-    "desencoladoEn": "2021-11-16T18:05:13.784Z"
+    "desencoladoEn": "2021-11-16T18:05:13.784Z",
+    "lugarEnLaCola": 2
   },
   {
     "eventoId": "dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
