@@ -23,7 +23,40 @@ class DaoUsuariosMongodb extends BaseDaoMongodb{
             { unique: true, name: this.UNIQUE_EVENTO_NUMERO });
     }
 
-    async save(doc){
+    buscarPrimeroEnLaCola = async (idEvento) => {
+        const query = {
+            eventoId: idEvento,
+            estado: 'encolado'
+        }
+        const options = {
+            sort: { lugarEnLaCola: 1 },
+            limit: 1
+        }
+
+        const usuario = await this.collection.find(query, options).toArray()
+
+        if(usuario.length == 0)
+            return null
+
+        return usuario[0]
+    }
+
+    buscarTodos = async (eventoId) => {
+        const query = {
+            eventoId: eventoId
+        }
+
+        return await this.collection.find(query).toArray()
+    }
+
+    update = async (usuario) => {
+        const filter = { id: usuario.id };
+        const options = { upsert: true };
+
+        await this.collection.updateOne(filter, { $set: usuario }, options);
+    }
+
+    save = async (doc) => {
         try {
             await super.save(doc)
         } catch (error) {
@@ -51,7 +84,7 @@ class DaoUsuariosMongodb extends BaseDaoMongodb{
         return await this.collection.find(query).count()
     }
 
-    async obtenerUltimoNumero(eventoId){
+    obtenerUltimoNumero = async (eventoId) => {
         const query = { eventoId: eventoId }
         const options = {
             sort: { lugarEnLaCola: -1 },

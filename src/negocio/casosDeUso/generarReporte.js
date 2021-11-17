@@ -46,7 +46,7 @@ class GenerarReporte {
                 telefono: usuario.telefono,
                 encoladoEn: this.formatearFecha(usuario.encoladoEn),
                 desencoladoEn: this.formatearFecha(usuario.desencoladoEn),
-                tiempoEsperaEnSegundos: (new Date(usuario.desencoladoEn)-new Date(usuario.encoladoEn))/1000,
+                tiempoEsperaEnSegundos: this.calcularTiempoEspera (usuario.encoladoEn, usuario.desencoladoEn),
                 lugarEnLaCola: usuario.lugarEnLaCola
             })
         }
@@ -55,10 +55,18 @@ class GenerarReporte {
     }
 
     formatearFecha = (fecha) => {
-        const date = new Date(fecha)
+        if(!fecha)
+            return ''
 
-        //return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`
+        const date = new Date(fecha)
         return date.toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    }
+
+    calcularTiempoEspera(encoladoEn, desencoladoEn){
+        if(!desencoladoEn)
+            return ''
+
+        return (new Date(desencoladoEn)-new Date(encoladoEn))/1000
     }
 }
 
