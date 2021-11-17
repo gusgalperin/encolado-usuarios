@@ -5,6 +5,7 @@ import Resumen from './resumenTests.js'
 import { getDao } from '../src/persistencia/daoFactory.js';
 import { ejecutarEncolarUsuarioTests } from './encolarUsuarioTests.js';
 import { ejecutarMailerTests } from './mailTest/testMail.js';
+import { ejecutarDesencolarUsuarioTests } from './desencolarUsuarioTests.js';
 
 const resumen = new Resumen()
 await resumen.reset()
@@ -22,6 +23,7 @@ if (USE_MONGO){
 await ejecutarMailerTests(resumen)
 await ejecutarSecurityTests(resumen)
 await ejecutarEncolarUsuarioTests(resumen)
+await ejecutarDesencolarUsuarioTests(resumen)
 
 if (USE_MONGO){
     await clienteMongo.desconectar()

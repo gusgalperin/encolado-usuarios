@@ -46,8 +46,6 @@ class EncolarUsuarioTests extends BaseTest{
         throw new Error('deberia haber tirado error')
     }
 
-
-
     mailInvalido = async () => {
         const sut = new EncolarUsuario()
         const crearEvento = new CrearEvento()

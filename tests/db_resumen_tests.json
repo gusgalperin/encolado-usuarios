@@ -62,6 +62,6 @@
   {
     "dominio": "encolar usuario",
     "descripcion": "encolar mismo usuario",
-    "resultado": "ok"
+    "resultado": "error --> no deberia haber tirado error: debería haber devuelto siempre el mismo id"
   }
 ]
