@@ -4,6 +4,10 @@ import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
 import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
 import InvalidArgsError from "../src/negocio/exceptions/invalidArgsError.js";
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class EncolarUsuarioTests extends BaseTest{
     constructor(resumen){
         super('encolar usuario', resumen)

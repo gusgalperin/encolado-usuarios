@@ -1,6 +1,10 @@
 import {MONGO_DB_NAME} from '../../config.js'
 import Cliente from './Cliente.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class BaseDaoMongodb {
     constructor (collectionName){
         const clienteMongo = Cliente.getCliente()

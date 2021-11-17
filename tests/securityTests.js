@@ -4,6 +4,10 @@ import { PORT } from '../src/config.js'
 import { getDao } from '../src/persistencia/daoFactory.js'
 import BaseTest from './baseTest.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class SecurityTests extends BaseTest{
     constructor(resumen){
         super('security', resumen)

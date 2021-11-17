@@ -1,5 +1,9 @@
 import fs from 'fs'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class Resumen{
     constructor(){
         this.ruta = './tests/db_resumen_tests.json'

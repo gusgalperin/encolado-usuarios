@@ -2,6 +2,10 @@ import { Router } from 'express'
 import EventsApi from '../negocio/eventsApi.js'
 import { createJwt } from '../security/jwt.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 const router = Router();
 const api = new EventsApi();
 

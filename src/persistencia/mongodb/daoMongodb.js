@@ -1,6 +1,10 @@
 import DaoEventsMongodb from "./daoEventsMongodb.js"
 import DaoUsuariosMongodb from "./daoUsuariosMongodb.js"
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class DaoMongodb{
     constructor(){
         this.eventos = new DaoEventsMongodb()

@@ -1,6 +1,9 @@
 import { getDao } from '../../persistencia/daoFactory.js'
 import Evento from '../entidades/evento.js';
 
+/*
+* Autor: Galperin Gustavo
+*/
 
 class CrearEvento {
     constructor(){

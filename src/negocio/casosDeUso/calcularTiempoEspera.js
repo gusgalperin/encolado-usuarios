@@ -1,5 +1,9 @@
 import { getDao } from "../../persistencia/daoFactory.js";
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class CalcularTiempoEspera {
     constructor() {
         this.dao = getDao()

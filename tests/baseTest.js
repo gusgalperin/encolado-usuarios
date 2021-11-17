@@ -1,3 +1,8 @@
+
+/*
+* Autor: Galperin Gustavo
+*/
+
 class BaseTest{
     constructor(dominio, resumen){
         this.dominio = dominio;

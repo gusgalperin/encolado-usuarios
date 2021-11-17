@@ -2,6 +2,10 @@ import BaseDaoMongodb from "./baseDaoMongodb.js"
 import NumeroDuplicadoPorNumero from "../../negocio/exceptions/numeroDuplicadoPorNumero.js";
 import NumeroDuplicadoPorUsuario from "../../negocio/exceptions/numeroDuplicadoPorUsuario.js";
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class DaoUsuariosMongodb extends BaseDaoMongodb{
     constructor(){
         super('usuarios')

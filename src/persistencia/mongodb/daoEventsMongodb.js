@@ -1,5 +1,9 @@
 import BaseDaoMongodb from "./baseDaoMongodb.js";
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class DaoEventsMongodb extends BaseDaoMongodb{
 
     constructor(){

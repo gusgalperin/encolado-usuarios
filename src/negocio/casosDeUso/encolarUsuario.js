@@ -8,6 +8,10 @@ import InvalidArgsError from "../exceptions/invalidArgsError.js";
 import NumeroDuplicadoPorUsuario from "../exceptions/numeroDuplicadoPorUsuario.js";
 import NumeroDuplicadoPorNumero from "../exceptions/numeroDuplicadoPorNumero.js";
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class EncolarUsuario {
     constructor(){
         this.calcularTiempoDeEspera = new CalcularTiempoEspera()

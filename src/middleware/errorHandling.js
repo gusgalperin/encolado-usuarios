@@ -1,6 +1,10 @@
 import CustomError from "../negocio/exceptions/CustomError.js";
 import { errorType } from "../negocio/exceptions/errorType.js";
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 async function errorHandling (err, req, res, next) {
     let status = 500
 
