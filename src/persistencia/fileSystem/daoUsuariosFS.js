@@ -1,5 +1,7 @@
 import BaseDaoFs from "./baseDaoFS.js";
 import fs from 'fs'
+import NumeroDuplicadoPorNumero from "../../negocio/exceptions/numeroDuplicadoPorNumero.js";
+import NumeroDuplicadoPorUsuario from "../../negocio/exceptions/numeroDuplicadoPorUsuario.js";
 
 class DaoUsuariosFS extends BaseDaoFs{
 
@@ -47,6 +49,26 @@ class DaoUsuariosFS extends BaseDaoFs{
 
         const txt = JSON.stringify(usuariosNoModificados, null, 2)
         await fs.promises.writeFile(this.ruta, txt)
+    }
+
+    async save(doc){
+        const usuarios = await this.getAll()
+
+        const usuarioExiste = usuarios
+            .filter(u => u.email == doc.email)
+            .filter(u => u.eventoId == doc.eventoId)
+
+        if(usuarioExiste.length > 0)
+            throw new NumeroDuplicadoPorUsuario()
+
+        const numeroExiste = usuarios
+            .filter(u => u.lugarEnLaCola == doc.lugarEnLaCola)
+            .filter(u => u.eventoId == doc.eventoId)
+
+        if(numeroExiste.length > 0)
+            throw new NumeroDuplicadoPorNumero()
+
+        await super.save(doc)
     }
 
     getCantidadDeUsuariosPrevios = async(eventoId, usuarioId, lugarEnLaCola) => {
