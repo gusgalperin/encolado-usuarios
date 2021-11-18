@@ -8,7 +8,9 @@ class DaoEventsFs extends BaseDaoFs {
     async getById(id){
         const events = await this.getAll()
         return events.find(x => x.id == id);
+
     }
+  
 
     async getByApiKey(apikey){
         const events = await this.getAll()
