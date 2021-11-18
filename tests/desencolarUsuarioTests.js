@@ -86,10 +86,7 @@ class DesencolarUsuarioTests extends BaseTest {
    
     }
 
-
 }
-
-
 
 async function ejecutarDesencolarUsuarioTests(resumen) {
     const nuevo = new DesencolarUsuarioTests(resumen)
