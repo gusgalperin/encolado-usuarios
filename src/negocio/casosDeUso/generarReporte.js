@@ -1,7 +1,7 @@
 import NotFoundError from "../exceptions/notFoundError.js";
 import InvalidArgsError from "../exceptions/invalidArgsError.js";
 import {getDao} from "../../persistencia/daoFactory.js";
-
+/*Ruiz, Daniel */
 class GenerarReporte {
     constructor() {
         this.dao = getDao()

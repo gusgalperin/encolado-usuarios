@@ -3,6 +3,7 @@ import BaseTest from './baseTest.js'
 import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
 import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
 import InvalidArgsError from "../src/negocio/exceptions/invalidArgsError.js";
+import {getDao} from "../src/persistencia/daoFactory.js";
 
 /*
 * Autor: Galperin Gustavo
@@ -11,6 +12,8 @@ import InvalidArgsError from "../src/negocio/exceptions/invalidArgsError.js";
 class EncolarUsuarioTests extends BaseTest{
     constructor(resumen){
         super('encolar usuario', resumen)
+
+        this.dao = getDao()
     }
 
     ejecutar = async () =>{
@@ -24,7 +27,7 @@ class EncolarUsuarioTests extends BaseTest{
             {desc: 'encolar mismo usuario', test: this.encolarMismoUsuario}
         ]
 
-        await this.run(tests)
+        await this.run(tests, this.borrarTodo)
     }
 
     eventoInexistente = async () => {
@@ -228,6 +231,11 @@ class EncolarUsuarioTests extends BaseTest{
         catch (error){
             throw new Error('no deberia haber tirado error: ' + error.message)
         }
+    }
+
+    borrarTodo = async () =>{
+        await this.dao.usuarios.deleteAll()
+        await this.dao.eventos.deleteAll()
     }
 
 

@@ -9,27 +9,32 @@ import { createJwt } from '../security/jwt.js'
 const router = Router();
 const api = new EventsApi();
 
-router.post('/access-token', async  (req, res) => {
-    const apikey = req.body.apikey;
+router.post('/access-token', async  (req, res, next) => {
+    try{
+        const apikey = req.body.apikey;
 
-    if(!apikey){
-        res.status(403);
-        res.send('missing required apiKey')
-        return;
+        if(!apikey){
+            res.status(403);
+            res.send('missing required apiKey')
+            return;
+        }
+
+        const event = await api.buscarPorApiKey(apikey);
+
+        if(!event){
+            res.status(403);
+            res.send('invalid apikey');
+            return;
+        }
+
+        const token = createJwt({id:event.id, apiKey:apikey})
+
+        res.status(200);
+        res.send({access_token: token});
     }
-
-    const event = await api.buscarPorApiKey(apikey);
-
-    if(!event){
-        res.status(403);
-        res.send('invalid apikey');
-        return;
+    catch(error){
+        next(error)
     }
-
-    const token = createJwt({id:event.id, apiKey:apikey})
-
-    res.status(200);
-    res.send({access_token: token});
 })
 
 export { router }

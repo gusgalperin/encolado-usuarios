@@ -1,5 +1,5 @@
 import xlsx from 'xlsx'
-
+/* Ruiz, Daniel */
 export default class ExcelToJson {
 
     convertir(filepath) {
