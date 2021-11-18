@@ -2,19 +2,20 @@ import SubjectAndBodyProvider from './subjectAndBodyProvider.js'
 
 // --------------Hecho por Alex Ignacio Nuñez------------------
 
-class PruebaProvider extends SubjectAndBodyProvider {
+
+class DesencoladoProvider extends SubjectAndBodyProvider {
 
     constructor(datos){
-        super(
-            'Bienvenido al TP',
+        super('LLEGO TU TURNO...',
+
             `<table border="0" cellpadding="0" cellspacing="0" width="600px" background-color="#2d3436" bgcolor="#2d3436">
                 <tr height="200px">  
                     <td bgcolor="" width="600px">
-                        <h1 style="color: #fff; text-align:center">Bienvenido ${datos.nombre}</h1>
+                        <h1 style="color: #fff; text-align:center">Hola  ${datos.nombre}</h1>
                         <p  style="color: #fff; text-align:center">
-                            <span style="color: #e84393">${datos.nombre}</span> 
-                            a la aplicación EVENTS ORT
+                            Llego tu turno para el evento ${datos.codigoEvento}
                         </p>
+                       
                     </td>
                 </tr>
                 <tr bgcolor="#fff">
@@ -28,4 +29,4 @@ class PruebaProvider extends SubjectAndBodyProvider {
     
 }
 
-export default PruebaProvider
+export default DesencoladoProvider

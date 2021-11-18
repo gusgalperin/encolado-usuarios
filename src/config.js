@@ -9,8 +9,13 @@ const FAKE_MAIL = true
 //-------------------------------------------------------------
 
 //correo creado para prueba
-const USER = 'alexnunez_2187@outlook.com'
-const PASS = 'Asdfgh_123'
+// const USER = 'alexnunez_2187@outlook.com'
+// const PASS = 'Asdfgh_123'
+const USER = 'eventosOrt@outlook.com'
+const PASS = 'qwerty123456'
+
+
+
 
 export { 
     PORT, 

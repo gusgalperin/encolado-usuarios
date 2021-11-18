@@ -48,9 +48,7 @@ router.post('/:id/encolar', verifyToken, async  (req, res, next) => {
     try{
         let data = req.body
         data.eventoId = req.params.id
-
         const result = await cu.ejecutar(data)
-
         res.status(201);
         res.send(result);
     }
@@ -60,9 +58,9 @@ router.post('/:id/encolar', verifyToken, async  (req, res, next) => {
 
 })
 
+
 router.post('/:id/desencolar', verifyToken, async  (req, res, next) => {
     const cu = new DesencolarUsuario()
-
     try{
         const result = await cu.ejecutar({eventoId: req.params.id})
 
@@ -74,6 +72,7 @@ router.post('/:id/desencolar', verifyToken, async  (req, res, next) => {
     }
 
 })
+
 
 router.get('/:id/reporte', async (req, res, next) => {
     const cu = new GenerarReporte()

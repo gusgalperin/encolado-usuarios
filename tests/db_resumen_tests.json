@@ -1,67 +1,17 @@
 [
   {
-    "dominio": "mailer",
-    "descripcion": "enviar mail",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "security",
-    "descripcion": "caso feliz",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "security",
-    "descripcion": "sin apikey al pedir token",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "security",
-    "descripcion": "apikey invalida al pedir token",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "security",
-    "descripcion": "sin token al pedir recurso seguro",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "security",
-    "descripcion": "token invalido al pedir recurso seguro",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "encolar usuario",
+    "dominio": "desencolar usuario",
     "descripcion": "evento no existe",
     "resultado": "ok"
   },
   {
-    "dominio": "encolar usuario",
-    "descripcion": "mail invalido",
+    "dominio": "desencolar usuario",
+    "descripcion": "no hay usuarios para desencolar",
     "resultado": "ok"
   },
   {
-    "dominio": "encolar usuario",
-    "descripcion": "evento con fecha de inicio de encolado mayor a ahora",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "encolar usuario",
-    "descripcion": "evento ya finalizo",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "encolar usuario",
-    "descripcion": "encolado ok",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "encolar usuario",
-    "descripcion": "encolar varios usuario",
-    "resultado": "ok"
-  },
-  {
-    "dominio": "encolar usuario",
-    "descripcion": "encolar mismo usuario",
+    "dominio": "desencolar usuario",
+    "descripcion": "deselcolado ok",
     "resultado": "ok"
   },
   {

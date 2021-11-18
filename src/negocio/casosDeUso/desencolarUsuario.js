@@ -1,14 +1,20 @@
+
+// --------------Hecho por Alex Ignacio Nuñez------------------
 import {getDao} from "../../persistencia/daoFactory.js";
 import NotFoundError from "../exceptions/notFoundError.js";
 import InvalidArgsError from "../exceptions/invalidArgsError.js";
 import Usuario from '../entidades/usuario.js'
+import DesencoladoProvider from "../../utils/moduloMail/desencoladoProvider.js";
+import { crearMailer } from "../../utils/moduloMail/fabricaMails.js";
 
 class DesencolarUsuario {
     constructor() {
         this.dao = getDao()
+        this.mailer = crearMailer()
+
     }
 
-    ejecutar =  async ({eventoId}) => {
+    ejecutar =  async(eventoId) => {
         const evento = await this.buscarEvento(eventoId)
 
         this.validar(evento)
@@ -24,7 +30,7 @@ class DesencolarUsuario {
 
         await this.dao.usuarios.update(usuario)
 
-        //TODO enviar mail
+        await this.mailer.enviar(usuario.email,new DesencoladoProvider(usuario) )
 
         return { id: usuario.id, email: usuario.email }
     }
@@ -33,7 +39,7 @@ class DesencolarUsuario {
         const evento = await this.dao.eventos.getById(eventoId)
 
         if(!evento)
-            throw new NotFoundError('evento inexistente')
+            throw new NotFoundError('no se encontro el evento ' + eventoId)
 
         return evento
     }

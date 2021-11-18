@@ -1,6 +1,9 @@
 import { USER, PASS } from '../../config.js'
 import nodemailer from 'nodemailer'
 
+// --------------Hecho por Alex Ignacio Nuñez------------------
+
+
 class Mailer {
     constructor(){
         this.transporter = nodemailer.createTransport({
