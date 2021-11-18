@@ -8,8 +8,6 @@ import InvalidArgsError from "../negocio/exceptions/invalidArgsError.js";
 async function verifyToken (req, res, next) {
     const token = req.headers["x-access-token"];
 
-    throw new InvalidArgsError('sarasa')
-
     if (!token) {
         res.status(403)
         res.send("No token provided");
