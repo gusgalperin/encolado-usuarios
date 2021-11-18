@@ -1,5 +1,10 @@
 import SubjectAndBodyProvider from './subjectAndBodyProvider.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
+
 class EncoladoProvider extends SubjectAndBodyProvider {
 
     constructor(datos){
