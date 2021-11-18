@@ -15,7 +15,7 @@ class DesencolarUsuarioTests extends BaseTest {
             { desc: 'evento no existe', test: this.eventoInexistente },
             {desc: 'no hay usuarios para desencolar', test: this.noHayUsuariosParaDesencolar},
             // {desc: 'evento ya finalizo', test: this.eventoYaFinalizado},
-            {desc: 'deselcolado ok', test: this.desencolado}
+            {desc: 'desencolado ok', test: this.desencolado}
         ]
 
         await this.run(tests)
