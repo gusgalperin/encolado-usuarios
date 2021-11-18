@@ -1,4 +1,5 @@
 import { checkJwt } from '../security/jwt.js'
+import InvalidArgsError from "../negocio/exceptions/invalidArgsError.js";
 
 /*
 * Autor: Galperin Gustavo
@@ -6,6 +7,8 @@ import { checkJwt } from '../security/jwt.js'
 
 async function verifyToken (req, res, next) {
     const token = req.headers["x-access-token"];
+
+    throw new InvalidArgsError('sarasa')
 
     if (!token) {
         res.status(403)

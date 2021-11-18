@@ -8,9 +8,12 @@ import { ejecutarMailerTests } from './mailTest/testMail.js';
 import { ejecutarDesencolarUsuarioTests } from './desencolarUsuarioTests.js';
 import { ejecutarCargaMasiva } from './testCarga.js';
 import { ejecutarReporteTests } from '../tests/generarReporteTests.js'
+import {ejecutarCrearEventoTests} from "./crearEventoTests.js";
 
 const resumen = new Resumen()
 await resumen.reset()
+
+const dao = getDao()
 
 let clienteMongo;
 
@@ -18,16 +21,29 @@ if (USE_MONGO){
     clienteMongo = Cliente.getCliente()
     await clienteMongo.conectar()
 
-    let dao = getDao()
     await dao.crearIndices()
 }
 
-/*await ejecutarMailerTests(resumen)
-await ejecutarSecurityTests(resumen)
-await ejecutarEncolarUsuarioTests(resumen)
-await ejecutarDesencolarUsuarioTests(resumen)
-await ejecutarCargaMasiva(resumen)*/
-await ejecutarReporteTests(resumen)
+
+try {
+    await ejecutarMailerTests(resumen)
+    await ejecutarSecurityTests(resumen)
+    await ejecutarEncolarUsuarioTests(resumen)
+    await ejecutarDesencolarUsuarioTests(resumen)
+    await ejecutarCargaMasiva(resumen)
+    await ejecutarCrearEventoTests(resumen)
+    await ejecutarReporteTests(resumen)
+}
+catch (error){
+    console.log('hubo un error al correr los tests')
+    console.log(error.message)
+    console.log(error.stackTrace)
+}
+finally {
+    await dao.usuarios.deleteAll()
+    await dao.eventos.deleteAll()
+}
+
 
 if (USE_MONGO){
     await clienteMongo.desconectar()

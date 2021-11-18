@@ -6,8 +6,8 @@ import fs from 'fs'
 
 class Resumen{
     constructor(){
-        this.ruta = './tests/db_resumen_tests.json'// defino la ruta 
-        this.empezoEn = new Date()//hora en la que emzo a correr
+        this.ruta = './tests/db_resumen_tests.json'
+        this.empezoEn = new Date()
     }
 
     getAll = async () => {

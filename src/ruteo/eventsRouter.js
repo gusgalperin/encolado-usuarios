@@ -13,33 +13,48 @@ const router = Router();
 const api = new EventsApi();
 const upload = multer({ dest: 'uploads/' })
 
-router.get('/', verifyToken, async (req, res) => {
-    res.send(await api.buscarTodo())
-})
-
-router.get('/:id', verifyToken, async (req, res) => {
-    const evento = await api.buscarPorId(req.params.id)
-    if (evento) {
-        res.send(evento)
-    } else {
-        res.status(404)
-        res.send({ error: 'evento inexistente' })
+router.get('/', verifyToken, async (req, res, next) => {
+    try {
+        res.send(await api.buscarTodo())
+    }
+    catch (error){
+        next(error)
     }
 })
 
-router.post('/', async  (req, res) => {
-    const cu = new CrearEvento()
-    const result = await cu.ejecutar(req.body)
-    res.status(201);
-    res.send(result);
+router.get('/:id', verifyToken, async (req, res, next) => {
+    try {
+        const evento = await api.buscarPorId(req.params.id)
+        res.send(evento)
+    }
+    catch(error){
+        next(error)
+    }
+})
+
+router.post('/', async  (req, res, next) => {
+    try {
+        const cu = new CrearEvento()
+        const result = await cu.ejecutar(req.body)
+        res.status(201);
+        res.send(result);
+    }
+    catch (error){
+        next(error)
+    }
 })
 
 router.post('/bulk', upload.single('events'), async  (req, res) => {
-    const cu = new CargaMasiva()
-    const result = await cu.ejecutar({fileName: req.file.path})
+    try {
+        const cu = new CargaMasiva()
+        const result = await cu.ejecutar({fileName: req.file.path})
 
-    res.status(201);
-    res.send(result)
+        res.status(201);
+        res.send(result)
+    }
+    catch (error){
+        next(error)
+    }
 })
 
 router.post('/:id/encolar', verifyToken, async  (req, res, next) => {
