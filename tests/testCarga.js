@@ -4,6 +4,9 @@ import BaseTest from '../tests/baseTest.js'
 import { v4 as uuidv4 } from 'uuid'
 import CrearEvento from '../src/negocio/casosDeUso/crearEvento.js'
 
+/*
+Autor: Germán Mansilla
+*/
 
 class CargaMasivaTest extends BaseTest{
 

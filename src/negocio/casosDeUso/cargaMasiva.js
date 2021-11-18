@@ -1,6 +1,10 @@
 import ExcelToJson from "../../utils/excelToJson.js";
 import CrearEvento from "./crearEvento.js";
 
+/*
+Autor: Germán Mansilla
+*/
+
 class CargaMasiva {
     constructor() {
         this.excelToJson = new ExcelToJson()
