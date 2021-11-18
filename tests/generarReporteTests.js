@@ -2,28 +2,74 @@ import GenerarReporte from '../src/negocio/casosDeUso/generarReporte.js'
 import JsonToExcel from '../src/utils/jsonToExcel.js'
 import BaseTest from '../tests/baseTest.js'
 import { v4 as uuidv4 } from 'uuid'
+import { getDao } from '../src/persistencia/daoFactory.js';
 /* Ruiz, Daniel */
 class GenerarReporteTests extends BaseTest {
     constructor(resumen) {
         super('Generar Reportes', resumen);
+        this.dao = getDao()
     }
 
-    ejecutar = async ( res ) => {
+    ejecutar = async (  ) => {
+        await this.run([{desc:"generarReporte",test: this.generarReporte}])
+    }
+
+    generarReporte = async ( ) => {
+        const evento = await this.crearEvento()
+        await this.crearUsuario( evento)
         const cu = new GenerarReporte()
-        const jsonToExcel = new JsonToExcel()
-        const eventoId = uuidv4();
         try{
-            //const eventoId = '4916b5ac-f12d-4901-ad32-b38ba3053499'
+            const result = await cu.ejecutar({ eventoId: evento.id })
             
-            const result = await cu.ejecutar({ eventoId: eventoId })
-            const filePath = jsonToExcel.convertir(result.reporte, result.evento.codigo)
+            console.log(result)
             
-            console.log("Descarga Archivo: "+filePath+" Tamaño: "+ filePath.length)
-            //res.download(filePath);
         }
         catch (err){
             throw new Error("Algo salio mal: "+err);
         }
+    }
+
+    crearEvento = async () =>{
+        const now = new Date()
+        const evento = {
+            id: '4916b5ac-f12d-4901-ad32-b38ba3053499',
+            codigo: 'cod',
+            descripcion: 'desc',
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-3}`),
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`)
+        }
+        await this.dao.eventos.save( evento )
+        return evento
+    }
+
+    crearUsuario = async ( evento ) =>{
+        const now = new Date()
+        const usuario = { 
+            eventoId: evento.id, 
+            email:'siempre@mail.com', 
+            nombre:'sarasa', 
+            telefono:'sarasa' ,
+            estado :'desencolado',
+            id:'123654asdf',
+            encoladoEn: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+            desencoladoEn: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+            lugarEnLaCola: 1
+        }
+        const usuario2 = { 
+            eventoId: evento.id, 
+            email:'siempreElMismoUsuario@mail.com', 
+            nombre:'sarasa', 
+            telefono:'sarasa' ,
+            estado :'desencolado',
+            id:'123654piouyo',
+            encoladoEn: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+            desencoladoEn: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+            lugarEnLaCola: 2
+        }
+        
+        await this.dao.usuarios.save(usuario)
+        await this.dao.usuarios.save(usuario2)
     }
 }
 
