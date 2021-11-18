@@ -14,16 +14,13 @@ class CargaMasiva {
 
         for (let i = 0; i < eventos.length; i++) {
             const item = eventos[i]
-
             try {
                 const eventoCreado = await this.crearEvento.ejecutar(item)
-
                 result.push({codigo: item.codigo, id: eventoCreado.id, apiKey: eventoCreado.apiKey})
             }
             catch (error){
                 result.push({codigo: item.codigo, error: error.message})
             }
-
         }
 
         return result
