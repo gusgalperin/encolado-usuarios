@@ -13,6 +13,7 @@ class DaoMongodb{
 
     async crearIndices(){
         await this.usuarios.crearIndices()
+        await this.eventos.crearIndices()
     }
 }
 

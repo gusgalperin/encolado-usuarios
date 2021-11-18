@@ -67,11 +67,11 @@
   {
     "dominio": "cargando eventos",
     "descripcion": "evento existente",
-    "resultado": "error --> Ya existe el evento con el id80b694f9-7443-4539-9b42-27fd2e17c4b3"
+    "resultado": "error --> Ya existe el evento con el id8dd572ef-82d5-48d6-a8a3-80022ae512dd"
   },
   {
     "dominio": "cargando eventos",
     "descripcion": "eventos",
-    "resultado": "error --> Ocurrio un error: TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
+    "resultado": "ok"
   }
 ]

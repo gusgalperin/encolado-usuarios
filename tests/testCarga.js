@@ -21,21 +21,11 @@ class CargaMasivaTest extends BaseTest{
         await this.run(tests)
     }
 
-    eventoExistente = async () => {
-        const id = uuidv4();
-        let crear = new CrearEvento();
-        try {
-            await crear.ejectuar(id, "EVENTO 1", "1/11/21 17:00", "1/11/21 18:00","1/11/21 11:00",3,4)
-        } catch(error){
-            throw new Error("Ya existe el evento con el id" + id)
-        }
-    }
-
     cargarEventos = async () =>{
         let cargaM = new CargaMasiva();
-        let archivo = '/Users/germanmansilla/Documents/Repo/TP-TP2/2daEntrega/archivo/eventos.xlsx'
+        let archivo = './tests/eventos.xlsx'
         try{
-            let resultado = await cargaM.ejecutar(archivo)
+            let resultado = await cargaM.ejecutar({fileName: archivo})
             console.log(`se crearon ${resultado.length} los eventos`);
         } catch(error){
             throw new Error (`Ocurrio un error: ${error}`)
@@ -45,7 +35,7 @@ class CargaMasivaTest extends BaseTest{
 }
 async function ejecutarCargaMasiva(resumen){
     const cm = new CargaMasivaTest(resumen)
-    cm.ejecutar()
+    await cm.ejecutar()
 }
 
 
