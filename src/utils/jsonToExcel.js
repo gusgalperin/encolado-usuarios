@@ -1,5 +1,9 @@
 import xlsx from 'xlsx'
 
+/*
+Autor: Germán Mansilla
+*/
+
 class JsonToExcel {
 
     convertir = (jsonData, nombreArchivo) => {

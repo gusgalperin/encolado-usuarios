@@ -13,5 +13,15 @@
     "dominio": "desencolar usuario",
     "descripcion": "deselcolado ok",
     "resultado": "ok"
+  },
+  {
+    "dominio": "cargando eventos",
+    "descripcion": "evento existente",
+    "resultado": "error --> Ya existe el evento con el id80b694f9-7443-4539-9b42-27fd2e17c4b3"
+  },
+  {
+    "dominio": "cargando eventos",
+    "descripcion": "eventos",
+    "resultado": "error --> Ocurrio un error: TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
   }
 ]
