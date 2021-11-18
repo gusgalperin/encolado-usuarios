@@ -11,11 +11,10 @@ Autor: Germán Mansilla
 class CargaMasivaTest extends BaseTest{
 
     constructor(resumen){
-        super("cargando eventos", resumen)
+        super("carga masiva", resumen)
     }
     ejecutar = async () =>{
         const tests=[
-            {desc: "evento existente", test: this.eventoExistente },
             {desc: "eventos", test: this.cargarEventos},
         ];
         await this.run(tests)

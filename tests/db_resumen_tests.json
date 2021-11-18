@@ -80,12 +80,7 @@
     "resultado": "error -->  no deberia haber tirado errorno se encontro el evento 9cfa5e1c-2a25-4102-aff1-16c6630aa6dd"
   },
   {
-    "dominio": "cargando eventos",
-    "descripcion": "evento existente",
-    "resultado": "error --> test.test is not a function"
-  },
-  {
-    "dominio": "cargando eventos",
+    "dominio": "carga masiva",
     "descripcion": "eventos",
     "resultado": "ok"
   },
