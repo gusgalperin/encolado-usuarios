@@ -60,6 +60,11 @@ class Resumen{
         console.log('*******************************')
     }
 
+    async deleteAll(){
+        const txt = JSON.stringify([], null, 2)
+        await fs.promises.writeFile(this.ruta, txt)
+    }
+
 }
 
 export default Resumen

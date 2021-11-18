@@ -13,7 +13,7 @@ class DesencoladoProvider extends SubjectAndBodyProvider {
                     <td bgcolor="" width="600px">
                         <h1 style="color: #fff; text-align:center">Hola  ${datos.nombre}</h1>
                         <p  style="color: #fff; text-align:center">
-                            Llego tu turno para el evento ${datos.codigoEvento}
+                            Llego tu turno para el evento que esperabas!!!!!
                         </p>
                        
                     </td>

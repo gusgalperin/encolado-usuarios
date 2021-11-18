@@ -25,6 +25,7 @@ if (USE_MONGO){
 }
 
 
+
 try {
     await ejecutarMailerTests(resumen)
     await ejecutarSecurityTests(resumen)
@@ -50,3 +51,5 @@ if (USE_MONGO){
 }
 
 await resumen.mostrar()
+
+await resumen.deleteAll()

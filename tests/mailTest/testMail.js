@@ -2,6 +2,8 @@ import {crearMailer} from '../../src/utils/moduloMail/fabricaMails.js'
 import PruebaProvider from '../../src/utils/moduloMail/pruebaProvider.js'
 import BaseTest from "../baseTest.js";
 
+// --------------Hecho por Alex Ignacio Nuñez------------------
+
 class MailerTests extends BaseTest{
     constructor(resumen) {
         super('mailer', resumen)

@@ -10,7 +10,7 @@ import { crearMailer } from "../../utils/moduloMail/fabricaMails.js";
 class DesencolarUsuario {
     constructor() {
         this.dao = getDao()
-        this.mailer = crearMailer()
+        this.mailer = crearMailer(true)
 
     }
 
