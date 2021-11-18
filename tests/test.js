@@ -21,11 +21,11 @@ if (USE_MONGO){
     await dao.crearIndices()
 }
 
-await ejecutarMailerTests(resumen)
-await ejecutarSecurityTests(resumen)
-await ejecutarEncolarUsuarioTests(resumen)
+// await ejecutarMailerTests(resumen)
+// await ejecutarSecurityTests(resumen)
+// await ejecutarEncolarUsuarioTests(resumen)
 await ejecutarDesencolarUsuarioTests(resumen)
-await ejecutarCargaMasiva(resumen)
+// await ejecutarCargaMasiva(resumen)
 
 if (USE_MONGO){
     await clienteMongo.desconectar()

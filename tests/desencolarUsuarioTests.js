@@ -1,5 +1,6 @@
 import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
 import DesencolarUsuario from "../src/negocio/casosDeUso/desencolarUsuario.js";
+import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
 // import { getDao } from "../src/persistencia/daoFactory.js";
 import BaseTest from "./baseTest.js";
 
@@ -59,8 +60,8 @@ class DesencolarUsuarioTests extends BaseTest {
         const crearEvento = new CrearEvento
         const now = new Date()
         const evento = {
-            codigo: 'pepito',
-            descripcion: 'pepito',
+            codigo: 'nuevoEvento',
+            descripcion: 'nuevoEvento',
             fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
             fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
             fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
@@ -72,17 +73,25 @@ class DesencolarUsuarioTests extends BaseTest {
   
     desencolado = async () =>{
         const objt3 = new DesencolarUsuario()
-        
-        const dato = {
-            idEvent : "9cfa5e1c-2a25-4102-aff1-16c6630aa6dd"
+        const usuarioNuevo = new EncolarUsuario()
+        const crearEventoNuevo = new CrearEvento
+        const now = new Date()
+        const eve = {
+            codigo: 'cuak',
+            descripcion: 'cuak',
+            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+2}-${now.getDate()+2}`),
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+4}-${now.getDate()+1}`),
         }
-         try {
-              const result = await objt3.ejecutar(dato.idEvent)
-              console.log(result.id)
-         } catch (error) {
-            throw new Error(' no deberia haber tirado error'+ error.message)
-         }
-
+        const idNuevo = await crearEventoNuevo.ejecutar(eve)
+        try{
+            const dato = await usuarioNuevo.ejecutar({ eventoId: idNuevo.id, email:'benjamyn2187@gmail.com', nombre:'juancito', telefono:'1232456' })
+            const desencolado = await objt3.ejecutar(idNuevo.id)
+            console.log(desencolado)
+        }
+        catch (error){
+            throw new Error('no deberia haber tirado error: ' + error.message)
+        }
    
     }
 
