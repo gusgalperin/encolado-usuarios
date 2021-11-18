@@ -73,7 +73,7 @@ router.post('/:id/desencolar', verifyToken, async  (req, res, next) => {
 
 })
 
-
+/* Ruiz, Daniel */
 router.get('/:id/reporte', async (req, res, next) => {
     const cu = new GenerarReporte()
     const jsonToExcel = new JsonToExcel()
