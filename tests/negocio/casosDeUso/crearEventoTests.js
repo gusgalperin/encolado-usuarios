@@ -1,9 +1,9 @@
-import BaseTest from "./baseTest.js";
-import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
-import InvalidArgsError from "../src/negocio/exceptions/invalidArgsError.js";
-import Evento from "../src/negocio/entidades/evento.js";
-import {getDao} from "../src/persistencia/daoFactory.js";
-import EventoDuplicado from "../src/negocio/exceptions/eventoDuplicado.js";
+import BaseTest from "../../baseTest.js";
+import CrearEvento from "../../../src/negocio/casosDeUso/crearEvento.js";
+import InvalidArgsError from "../../../src/negocio/exceptions/invalidArgsError.js";
+import Evento from "../../../src/negocio/entidades/evento.js";
+import {getDao} from "../../../src/persistencia/daoFactory.js";
+import EventoDuplicado from "../../../src/negocio/exceptions/eventoDuplicado.js";
 
 /*
 * Autor: Galperin Gustavo

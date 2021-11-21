@@ -1,14 +1,14 @@
 import { USE_MONGO } from '../src/config.js';
-import { ejecutarSecurityTests }  from './securityTests.js';
+import { ejecutarSecurityTests }  from './security/securityTests.js';
 import Cliente from '../src/persistencia/mongodb/Cliente.js'
-import Resumen from './resumenTests.js'
+import Resumen from './helpers/resumenTests.js'
 import { getDao } from '../src/persistencia/daoFactory.js';
-import { ejecutarEncolarUsuarioTests } from './encolarUsuarioTests.js';
+import { ejecutarEncolarUsuarioTests } from './negocio/casosDeUso/encolarUsuarioTests.js';
 import { ejecutarMailerTests } from './mailTest/testMail.js';
-import { ejecutarDesencolarUsuarioTests } from './desencolarUsuarioTests.js';
-import { ejecutarCargaMasiva } from './testCarga.js';
-import { ejecutarReporteTests } from '../tests/generarReporteTests.js'
-import {ejecutarCrearEventoTests} from "./crearEventoTests.js";
+import { ejecutarDesencolarUsuarioTests } from './negocio/casosDeUso/desencolarUsuarioTests.js';
+import { ejecutarCargaMasiva } from './negocio/casosDeUso/testCarga.js';
+import { ejecutarReporteTests } from './negocio/casosDeUso/generarReporteTests.js'
+import {ejecutarCrearEventoTests} from "./negocio/casosDeUso/crearEventoTests.js";
 
 const resumen = new Resumen()
 await resumen.reset()

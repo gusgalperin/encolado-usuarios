@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid'
-import BaseTest from './baseTest.js'
-import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
-import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
-import InvalidArgsError from "../src/negocio/exceptions/invalidArgsError.js";
-import {getDao} from "../src/persistencia/daoFactory.js";
+import BaseTest from '../../baseTest.js'
+import EncolarUsuario from "../../../src/negocio/casosDeUso/encolarUsuario.js";
+import CrearEvento from "../../../src/negocio/casosDeUso/crearEvento.js";
+import InvalidArgsError from "../../../src/negocio/exceptions/invalidArgsError.js";
+import {getDao} from "../../../src/persistencia/daoFactory.js";
 
 /*
 * Autor: Galperin Gustavo

@@ -1,8 +1,8 @@
-import ClienteHTTP from './clienteHTTP.js'
-import Server from '../src/server.js'
-import { PORT } from '../src/config.js'
-import { getDao } from '../src/persistencia/daoFactory.js'
-import BaseTest from './baseTest.js'
+import ClienteHTTP from '../helpers/clienteHTTP.js'
+import Server from '../../src/server.js'
+import { PORT } from '../../src/config.js'
+import { getDao } from '../../src/persistencia/daoFactory.js'
+import BaseTest from '../baseTest.js'
 
 /*
 * Autor: Galperin Gustavo

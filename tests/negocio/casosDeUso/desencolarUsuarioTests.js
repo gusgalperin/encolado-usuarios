@@ -1,13 +1,15 @@
-import CrearEvento from "../src/negocio/casosDeUso/crearEvento.js";
-import DesencolarUsuario from "../src/negocio/casosDeUso/desencolarUsuario.js";
-import EncolarUsuario from "../src/negocio/casosDeUso/encolarUsuario.js";
+import CrearEvento from "../../../src/negocio/casosDeUso/crearEvento.js";
+import DesencolarUsuario from "../../../src/negocio/casosDeUso/desencolarUsuario.js";
+import EncolarUsuario from "../../../src/negocio/casosDeUso/encolarUsuario.js";
 // import { getDao } from "../src/persistencia/daoFactory.js";
-import BaseTest from "./baseTest.js";
+import BaseTest from "../../baseTest.js";
+import {getDao} from "../../../src/persistencia/daoFactory.js";
 
 class DesencolarUsuarioTests extends BaseTest {
 
     constructor(resumen) {
         super('desencolar usuario', resumen);
+        this.dao = getDao()
     }
 
     ejecutar = async () => {
@@ -18,7 +20,7 @@ class DesencolarUsuarioTests extends BaseTest {
             {desc: 'desencolado ok', test: this.desencolado}
         ]
 
-        await this.run(tests)
+        await this.run(tests, async () => this.dao.eventos.deleteAll())
     }
 
 
@@ -54,36 +56,34 @@ class DesencolarUsuarioTests extends BaseTest {
         throw new Error('deberia haber tirado error')
     }
 
-
-
     crearEvento = async () => {
-        const crearEvento = new CrearEvento
         const now = new Date()
         const evento = {
+            id: '4916b5ac-f12d-4901-ad32-b38ba3053499',
             codigo: 'nuevoEvento',
             descripcion: 'nuevoEvento',
             fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
             fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-2}`),
             fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
         }
-        const eventoId = await crearEvento.ejecutar(evento)
-        return eventoId
+        await this.dao.eventos.save( evento )
+        return evento
     }
 
   
     desencolado = async () =>{
         const objt3 = new DesencolarUsuario()
         const usuarioNuevo = new EncolarUsuario()
-        const crearEventoNuevo = new CrearEvento
-        const now = new Date()
-        const eve = {
-            codigo: 'cuak',
-            descripcion: 'cuak',
-            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
-            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
-            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
-        }
-        const idNuevo = await crearEventoNuevo.ejecutar(eve)
+        // const crearEventoNuevo = new CrearEvento
+        // const now = new Date()
+        // const eve = {
+        //     codigo: 'cuak',
+        //     descripcion: 'cuak',
+        //     fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+        //     fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
+        //     fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+        // }
+        const idNuevo = await this.crearEvento()
         try{
             const dato = await usuarioNuevo.ejecutar({ eventoId: idNuevo.id, email:'benjamyn2187@gmail.com', nombre:'juancito', telefono:'1232456' })
             const desencolado = await objt3.ejecutar({eventoId: idNuevo.id})

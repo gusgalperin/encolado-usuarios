@@ -1,8 +1,8 @@
-import CargaMasiva from '../src/negocio/casosDeUso/cargaMasiva.js'
-import Evento from '../src/negocio/entidades/evento.js';
-import BaseTest from '../tests/baseTest.js'
+import CargaMasiva from '../../../src/negocio/casosDeUso/cargaMasiva.js'
+import Evento from '../../../src/negocio/entidades/evento.js';
+import BaseTest from '../../baseTest.js'
 import { v4 as uuidv4 } from 'uuid'
-import CrearEvento from '../src/negocio/casosDeUso/crearEvento.js'
+import CrearEvento from '../../../src/negocio/casosDeUso/crearEvento.js'
 
 /*
 Autor: Germán Mansilla

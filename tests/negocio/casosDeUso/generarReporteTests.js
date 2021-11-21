@@ -1,8 +1,8 @@
-import GenerarReporte from '../src/negocio/casosDeUso/generarReporte.js'
-import JsonToExcel from '../src/utils/jsonToExcel.js'
-import BaseTest from '../tests/baseTest.js'
+import GenerarReporte from '../../../src/negocio/casosDeUso/generarReporte.js'
+import JsonToExcel from '../../../src/utils/jsonToExcel.js'
+import BaseTest from '../../baseTest.js'
 import { v4 as uuidv4 } from 'uuid'
-import { getDao } from '../src/persistencia/daoFactory.js';
+import { getDao } from '../../../src/persistencia/daoFactory.js';
 /* Ruiz, Daniel */
 class GenerarReporteTests extends BaseTest {
     constructor(resumen) {
@@ -32,12 +32,12 @@ class GenerarReporteTests extends BaseTest {
     crearEvento = async () =>{
         const now = new Date()
         const evento = {
-            id: '4916b5ac-f12d-4901-ad32-b38ba3053499',
+            id: uuidv4(),
             codigo: 'cod',
             descripcion: 'desc',
-            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-4}`),
             fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-3}`),
-            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`)
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-5}`)
         }
         await this.dao.eventos.save( evento )
         return evento
