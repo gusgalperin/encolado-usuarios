@@ -1,5 +1,7 @@
 import BaseDaoFs from "./baseDaoFS.js";
 import EventoDuplicado from "../../negocio/exceptions/eventoDuplicado.js";
+import NotFoundError from "../../negocio/exceptions/notFoundError.js";
+import Evento from "../../negocio/entidades/evento.js";
 
 class DaoEventsFs extends BaseDaoFs {
     constructor (ruta){
@@ -20,8 +22,12 @@ class DaoEventsFs extends BaseDaoFs {
 
     async getById(id){
         const events = await this.getAll()
-        return events.find(x => x.id == id);
+        const evento = events.find(x => x.id == id);
 
+        if(!evento)
+            throw new NotFoundError('no se encontro el evento ' + id)
+
+        return Evento.set(evento)
     }
   
 

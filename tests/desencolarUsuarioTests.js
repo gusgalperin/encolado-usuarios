@@ -26,7 +26,7 @@ class DesencolarUsuarioTests extends BaseTest {
         const obj = new DesencolarUsuario()
         const dato = { id: "cualquierCosa" }
         try {
-            const evento = await obj.ejecutar(dato.id)
+            const evento = await obj.ejecutar({eventoId: dato.id})
             console.log(evento)
         } catch (error) {
             
@@ -43,7 +43,7 @@ class DesencolarUsuarioTests extends BaseTest {
         const obj2 = new DesencolarUsuario()
         const idEvento =  await this.crearEvento()
         try {
-            const dato = await obj2.ejecutar(idEvento.id)
+            const dato = await obj2.ejecutar({eventoId: idEvento.id})
             console.log(dato)
         } catch (error) {
             if (error.message == "no hay usuarios para desencolar")
@@ -63,8 +63,8 @@ class DesencolarUsuarioTests extends BaseTest {
             codigo: 'nuevoEvento',
             descripcion: 'nuevoEvento',
             fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
-            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
-            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
+            fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-2}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
         }
         const eventoId = await crearEvento.ejecutar(evento)
         return eventoId
@@ -79,14 +79,14 @@ class DesencolarUsuarioTests extends BaseTest {
         const eve = {
             codigo: 'cuak',
             descripcion: 'cuak',
-            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+2}-${now.getDate()+2}`),
+            fechaHoraFinEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+2}`),
             fechaHoraInicioEncolado: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()-1}`),
-            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+4}-${now.getDate()+1}`),
+            fechaHoraInicioEvento: new Date(`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()+1}`),
         }
         const idNuevo = await crearEventoNuevo.ejecutar(eve)
         try{
             const dato = await usuarioNuevo.ejecutar({ eventoId: idNuevo.id, email:'benjamyn2187@gmail.com', nombre:'juancito', telefono:'1232456' })
-            const desencolado = await objt3.ejecutar(idNuevo.id)
+            const desencolado = await objt3.ejecutar({eventoId: idNuevo.id})
             console.log(desencolado)
         }
         catch (error){

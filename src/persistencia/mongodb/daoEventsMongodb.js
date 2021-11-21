@@ -1,5 +1,7 @@
 import BaseDaoMongodb from "./baseDaoMongodb.js";
 import EventoDuplicado from "../../negocio/exceptions/eventoDuplicado.js";
+import NotFoundError from "../../negocio/exceptions/notFoundError.js";
+import Evento from "../../negocio/entidades/evento.js"
 
 /*
 * Autor: Galperin Gustavo
@@ -36,7 +38,12 @@ class DaoEventsMongodb extends BaseDaoMongodb{
 
     async getById(id){
         const query = {id: id}
-        return await this.collection.findOne(query)
+        const eventoFromDb =  await this.collection.findOne(query)
+
+        if(!eventoFromDb)
+            throw new NotFoundError('no se encontro el evento ' + id)
+
+        return Evento.set(eventoFromDb)
     }
 
     async getByApiKey(apikey){

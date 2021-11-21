@@ -1,11 +1,11 @@
-import SubjectAndBodyProvider from './subjectAndBodyProvider.js'
+import EmailDataProvider from './emailDataProvider.js'
 
 /*
 * Autor: Galperin Gustavo
 */
 
 
-class EncoladoProvider extends SubjectAndBodyProvider {
+class EncoladoEmailData extends EmailDataProvider {
 
     constructor(datos){
         super(
@@ -33,7 +33,6 @@ class EncoladoProvider extends SubjectAndBodyProvider {
             </table>`
         )
     }
-    
 }
 
-export default EncoladoProvider
+export default EncoladoEmailData

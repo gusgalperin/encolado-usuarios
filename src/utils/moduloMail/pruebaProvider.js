@@ -1,8 +1,8 @@
-import SubjectAndBodyProvider from './subjectAndBodyProvider.js'
+import EmailDataProvider from './emailDataProvider.js'
 
 // --------------Hecho por Alex Ignacio Nuñez------------------
 
-class PruebaProvider extends SubjectAndBodyProvider {
+class PruebaProvider extends EmailDataProvider {
 
     constructor(datos){
         super(

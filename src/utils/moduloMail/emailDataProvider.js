@@ -1,10 +1,10 @@
 
 
-class SubjectAndBodyProvider {
+class EmailDataProvider {
     constructor(subject, body){
         this.subject = subject
         this.body = body
     }
 }
 
-export default SubjectAndBodyProvider
+export default EmailDataProvider

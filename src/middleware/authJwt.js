@@ -1,5 +1,4 @@
 import { checkJwt } from '../security/jwt.js'
-import InvalidArgsError from "../negocio/exceptions/invalidArgsError.js";
 
 /*
 * Autor: Galperin Gustavo

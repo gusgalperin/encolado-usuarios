@@ -1,9 +1,9 @@
-import SubjectAndBodyProvider from './subjectAndBodyProvider.js'
+import EmailDataProvider from './emailDataProvider.js'
 
 // --------------Hecho por Alex Ignacio Nuñez------------------
 
 
-class DesencoladoProvider extends SubjectAndBodyProvider {
+class DesencoladoEmailData extends EmailDataProvider {
 
     constructor(datos){
         super('LLEGO TU TURNO...',
@@ -29,4 +29,4 @@ class DesencoladoProvider extends SubjectAndBodyProvider {
     
 }
 
-export default DesencoladoProvider
+export default DesencoladoEmailData

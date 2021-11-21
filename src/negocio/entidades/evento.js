@@ -77,6 +77,33 @@ class Evento{
         this.fechaHoraFinEvento = fechaFinEvento
     }
 
+    static set = (e) => {
+        let evento = new Evento(e.codigo, e.descripcion, e.fechaHoraInicioEvento, e.fechaHoraFinEvento, e.fechaHoraInicioEncolado, e.tiempoEstimadoAtencionPorUsuarioEnMinutos, e.usuariosConcurrentes)
+        evento.id = e.id
+        evento.apiKey = e.apiKey
+        return evento
+    }
+
+    validarEncolar = () => {
+        let now = new Date()
+
+        if(new Date(this.fechaHoraInicioEncolado) > now)
+            throw new InvalidArgsError('aun no inicio el horario de encolado')
+
+        if(new Date(this.fechaHoraFinEvento) < now)
+            throw new InvalidArgsError('el evento ya finalizo')
+    }
+
+    validarDesencolar = () => {
+        const ahora = new Date()
+
+        if(this.fechaHoraInicioEvento > ahora)
+            throw new InvalidArgsError('se puede desencolar a partir de la fecha ' + this.fechaHoraInicioEvento )
+
+        if(this.fechaHoraFinEvento < ahora)
+            throw new InvalidArgsError('el evento ya finalizo')
+    }
+
 }
 
 export default Evento

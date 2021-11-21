@@ -24,8 +24,6 @@ if (USE_MONGO){
     await dao.crearIndices()
 }
 
-
-
 try {
     await ejecutarMailerTests(resumen)
     await ejecutarSecurityTests(resumen)
@@ -44,7 +42,6 @@ finally {
     await dao.usuarios.deleteAll()
     await dao.eventos.deleteAll()
 }
-
 
 if (USE_MONGO){
     await clienteMongo.desconectar()
