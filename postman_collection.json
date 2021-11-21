@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "b413a417-80dd-437c-b16c-634e46bf2818",
+		"name": "TP2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get secured",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ5N2ZjZDY3LTIyYTItNDMzMS04MWNiLWMzNmYxMGU5ZDdkMyIsImFwaUtleSI6IlpEazNabU5rTmpjdE1qSmhNaTAwTXpNeExUZ3hZMkl0WXpNMlpqRXdaVGxrTjJRemZFRlNSMTlEU0VsTVJWOHdPUzB5TURJeCIsImlhdCI6MTYzNjczMTM0NSwiZXhwIjoxNjM2NzM0OTQ1fQ._xqnIyVuBoAVOXShU9uZqZ0-6bYTsbBYKVdVH5i1mW4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8010/api/events/d97fcd67-22a2-4331-81cb-c36f10e9d7d3",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"events",
+						"d97fcd67-22a2-4331-81cb-c36f10e9d7d3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "encolar usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRmZTcwYzViLTNhZmItNDJmOC1hMTAyLWIwZWNlZTA3Y2QyNCIsImFwaUtleSI6IlpHWmxOekJqTldJdE0yRm1ZaTAwTW1ZNExXRXhNREl0WWpCbFkyVmxNRGRqWkRJMGZFRlNSMTlEU0VsTVJWOHdPUzB5TURJeCIsImlhdCI6MTYzNzA4NTI4MSwiZXhwIjoxNjM3MDg4ODgxfQ.jRht8hztrPpC78__D95KP7YGZJ3jGVhnzMhhcrzMXb0",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"gusgalper@gmail.com3\",\r\n    \"nombre\": \"gus3\",\r\n    \"telefono\": \"0303456\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8010/api/events/dfe70c5b-3afb-42f8-a102-b0ecee07cd24/encolar",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"events",
+						"dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
+						"encolar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "desencolar usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRmZTcwYzViLTNhZmItNDJmOC1hMTAyLWIwZWNlZTA3Y2QyNCIsImFwaUtleSI6IlpHWmxOekJqTldJdE0yRm1ZaTAwTW1ZNExXRXhNREl0WWpCbFkyVmxNRGRqWkRJMGZFRlNSMTlEU0VsTVJWOHdPUzB5TURJeCIsImlhdCI6MTYzNzA4NTI4MSwiZXhwIjoxNjM3MDg4ODgxfQ.jRht8hztrPpC78__D95KP7YGZJ3jGVhnzMhhcrzMXb0",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8010/api/events/dfe70c5b-3afb-42f8-a102-b0ecee07cd24/desencolar",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"events",
+						"dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
+						"desencolar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generar reporte",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRmZTcwYzViLTNhZmItNDJmOC1hMTAyLWIwZWNlZTA3Y2QyNCIsImFwaUtleSI6IlpHWmxOekJqTldJdE0yRm1ZaTAwTW1ZNExXRXhNREl0WWpCbFkyVmxNRGRqWkRJMGZFRlNSMTlEU0VsTVJWOHdPUzB5TURJeCIsImlhdCI6MTYzNzA4NTI4MSwiZXhwIjoxNjM3MDg4ODgxfQ.jRht8hztrPpC78__D95KP7YGZJ3jGVhnzMhhcrzMXb0",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8010/api/events/dfe70c5b-3afb-42f8-a102-b0ecee07cd24/reporte",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"events",
+						"dfe70c5b-3afb-42f8-a102-b0ecee07cd24",
+						"reporte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"codigo\": \"ARG_CHILE_09-2021\",\r\n\t\"descripcion\": \"Venta de entradas para el partido de Argentina vs Chile por la fecha 24 de las eliminatorias para la copa del mundo Qatar 2022\",\r\n\t\"fechaHoraInicioEvento\": \"2021-11-15 00:00:00\",\r\n\t\"fechaHoraFinEvento\": \"2021-11-30 06:00:00\",\r\n\t\"fechaHoraInicioEncolado\": \"2021-11-14 00:00:00\",\r\n\t\"tiempoEstimadoAtencionPorUsuarioEnMinutos\": 5,\r\n\t\"usuariosConcurrentes\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8010/api/events",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apikey\": \"ZGZlNzBjNWItM2FmYi00MmY4LWExMDItYjBlY2VlMDdjZDI0fEFSR19DSElMRV8wOS0yMDIx\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8010/api/auth/access-token",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"auth",
+						"access-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bulk",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "events",
+							"type": "file",
+							"src": "/C:/Users/F15239/Desktop/eventos.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8010/api/events/bulk",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"events",
+						"bulk"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

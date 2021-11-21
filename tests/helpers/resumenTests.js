@@ -1,5 +1,9 @@
 import fs from 'fs'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class Resumen{
     constructor(){
         this.ruta = './tests/db_resumen_tests.json'
@@ -54,6 +58,11 @@ class Resumen{
         console.log(`Total error: ${totalError}`)
 
         console.log('*******************************')
+    }
+
+    async deleteAll(){
+        const txt = JSON.stringify([], null, 2)
+        await fs.promises.writeFile(this.ruta, txt)
     }
 
 }

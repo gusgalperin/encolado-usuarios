@@ -1,10 +1,16 @@
-import {USER,PASS} from '../../config.js'
-import {crearEnviadorDeMails} from '../moduloMail/enviarMail.js'
+import Mailer from '../moduloMail/enviarMail.js'
+import { FAKE_MAIL } from "../../config.js";
+import MailerMock from "./enviarMailMock.js";
+
+// --------------Hecho por Alex Ignacio Nuñez------------------
 
 
-function crearMailer(){
-    return crearEnviadorDeMails(USER,PASS)
+function crearMailer(forzarReal) {
+    if(FAKE_MAIL && !forzarReal)
+        return new MailerMock()
+    else
+        return new Mailer()
 }
 
-
 export { crearMailer }
+

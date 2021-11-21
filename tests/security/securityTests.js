@@ -1,8 +1,12 @@
-import ClienteHTTP from './clienteHTTP.js'
-import Server from '../src/server.js'
-import { PORT } from '../src/config.js'
-import { getDao } from '../src/persistencia/daoFactory.js'
-import BaseTest from './baseTest.js'
+import ClienteHTTP from '../helpers/clienteHTTP.js'
+import Server from '../../src/server.js'
+import { PORT } from '../../src/config.js'
+import { getDao } from '../../src/persistencia/daoFactory.js'
+import BaseTest from '../baseTest.js'
+
+/*
+* Autor: Galperin Gustavo
+*/
 
 class SecurityTests extends BaseTest{
     constructor(resumen){
@@ -93,7 +97,7 @@ class SecurityTests extends BaseTest{
             "fechaHoraFinEvento": "2021-10-29 06:00:00",
             "fechaHoraInicioEncolado": "2021-10-28 22:00:00",
             "tiempoEstimadoAtencionPorUsuarioEnMinutos": 5,
-            "usuariosRecurrentes": 1
+            "usuariosConcurrentes": 1
         }
 
         const cliente = new ClienteHTTP(`${this.baseURL}/events`)

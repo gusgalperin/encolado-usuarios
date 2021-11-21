@@ -1,6 +1,10 @@
 import jwt from 'jsonwebtoken'
 import {SECRET} from '../config.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 function checkJwt(token){
     try{
         const decoded = jwt.verify(token, SECRET);

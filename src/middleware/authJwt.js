@@ -1,5 +1,9 @@
 import { checkJwt } from '../security/jwt.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 async function verifyToken (req, res, next) {
     const token = req.headers["x-access-token"];
 

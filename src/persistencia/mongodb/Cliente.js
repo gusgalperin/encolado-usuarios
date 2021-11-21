@@ -1,6 +1,10 @@
 import { MongoClient } from "mongodb"
 import { MONGO_URI } from '../../config.js'
 
+/*
+* Autor: Galperin Gustavo
+*/
+
 class ClientePrivado{
     constructor(){
         this.mongoClient = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
